@@ -1,15 +1,31 @@
-import typescript from '@rollup/plugin-typescript';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+const path = require('path');
+const typescript = require('@rollup/plugin-typescript');
+const { default: dts } = require('rollup-plugin-dts');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
 // eslint-disable-next-line import/extensions
-import pkg from './package.json';
+const pkg = require('./package.json');
 
-export default {
-  input: './src/index.ts',
-  output: {
-    file: pkg.main,
-    format: 'es',
-    sourcemap: true,
+
+const buildPath = path.dirname(pkg.module);
+
+module.exports = [
+  {
+    input: './src/index.ts',
+    output: {
+      dir: buildPath,
+      entryFileNames: path.basename(pkg.module),
+      format: 'es',
+      sourcemap: true,
+    },
+    external: Object.keys(pkg.dependencies || {}),
+    plugins: [nodeResolve({browser: true}), typescript()],
   },
-  external: Object.keys(pkg.dependencies || {}),
-  plugins: [nodeResolve({browser: true}), typescript()],
-};
+  {
+    input: './build/dts/index.d.ts',
+    output: [{
+      file: path.join(buildPath, `${path.basename(pkg.module, '.js')}.d.ts`),
+      format: 'es',
+    }],
+    plugins: [dts()],
+  },
+];

@@ -10,8 +10,9 @@ module.exports = {
       statements: 80,
     },
   },
+  testEnvironment: 'jsdom',
   collectCoverageFrom: ['src/**/*.ts'],
   transform: {
-    '^.+\\.[jt]s$': 'babel-jest',
+    '^.+\\.[jt]s$': ['ts-jest', {tsConfig: './tsconfig.test.json'}],
   },
 };
