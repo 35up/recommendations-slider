@@ -1,0 +1,6 @@
+*
+!src/**/*
+src/setup-tests.ts
+!build/**/*
+!README.md
+!tsconfig.json
