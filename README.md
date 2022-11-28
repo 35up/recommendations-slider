@@ -1,6 +1,3 @@
-# library-ts-template
+# Recommendations Slider
 
-The base template for libraries made in typescript
-
-## Warning!
-This library is not transpiled and uses es2020 features
+Component library to include 35up Recommendations in yur store

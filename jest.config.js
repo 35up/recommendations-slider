@@ -1,6 +1,8 @@
 module.exports = {
   setupFilesAfterEnv: ['./src/setup-tests.ts'],
-  testPathIgnorePatterns: ['/node_modules/'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!lit|@lit|@35up)',
+  ],
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {

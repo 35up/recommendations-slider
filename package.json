@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup --config",
     "lint": "eslint --ext .js,.ts .",
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests ./src",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage",
     "prepublishOnly": "make ci"
@@ -24,10 +24,12 @@
   },
   "homepage": "https://github.com/35up/tslib-boilerplate#readme",
   "dependencies": {
+    "lit": "^2.4.1",
     "tslib": "^2.4.1"
   },
   "devDependencies": {
     "@35up/eslint-config-35up-base": "^4.0.4",
+    "@35up/tslib-test-utils-wc": "^2.0.0",
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-typescript": "^10.0.0",
     "@types/chai": "^4.3.4",
