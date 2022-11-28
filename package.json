@@ -1,7 +1,7 @@
 {
-  "name": "tslib-boilerplate",
+  "name": "@35up/recommendations-slider",
   "version": "0.0.1",
-  "description": "The base template for libraries made in typescript",
+  "description": "Component library to include 35up Recommendations in yur store",
   "scripts": {
     "build": "rollup --config",
     "lint": "eslint --ext .js,.ts .",
