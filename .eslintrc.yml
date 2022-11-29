@@ -3,7 +3,8 @@ extends:
 parser: '@typescript-eslint/parser'
 parserOptions:
   project:
-    - tsconfig.base.json
+    - tsconfig.json
+    - tsconfig.test.json
 plugins:
   - '@typescript-eslint'
 env:
