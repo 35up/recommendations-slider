@@ -1,12 +1,9 @@
 {
-  "compilerOptions": {
-    "target": "es2020",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "forceConsistentCasingInFileNames": true
-  },
-  "exclude": ["node_modules"]
+  "extends": "./tsconfig.base.json",
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "src/setup-tests.ts",
+    "**/__mocks__/**/*",
+  ]
 }
