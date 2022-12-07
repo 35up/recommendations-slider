@@ -1,9 +1,10 @@
 import { LitElement, html, TemplateResult } from 'lit';
+import './slider';
 
 
 export class RecommendationsSlider extends LitElement {
   render(): TemplateResult {
-    return html`<div>Recommended</div>`;
+    return html`<up-slider>Recommended</up-slider>`;
   }
 }
 

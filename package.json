@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/35up/tslib-boilerplate#readme",
   "dependencies": {
+    "@35up/tslib-utils": "^2.3.2",
     "lit": "^2.4.1",
     "tslib": "^2.4.1"
   },
