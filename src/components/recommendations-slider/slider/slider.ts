@@ -17,9 +17,14 @@ export class Slider extends LitElement {
       gap: 0.5rem;
       justify-content: flex-start;
       width: 100%;
-      overflow: hidden;
+      overflow: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    slot::-webkit-scrollbar {
+      display: none;
     }
 
     button {
