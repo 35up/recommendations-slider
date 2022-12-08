@@ -92,20 +92,13 @@ export class Slider extends LitElement {
     return child;
   }
 
-  #getLastVisibleElement() {
-    let child = this.#getPreviousElement(this.lastChild ?? null);
-
-    while (child && !(this.#isChildVisible(child))) {
-      child = this.#getPreviousElement(child);
-    }
-    return child;
-  }
-
   #scrollToNext(): void {
-    const child = this.#getLastVisibleElement();
+    const child = this.#getFistVisibleElement();
 
     if (child) {
-      this.#getNextElement(child as Element)?.scrollIntoView(true);
+      this.#getNextElement(child as Element)?.scrollIntoView(
+        {block: 'start', inline: 'start'},
+      );
     }
   }
 
@@ -113,7 +106,9 @@ export class Slider extends LitElement {
     const child = this.#getFistVisibleElement();
 
     if (child) {
-      this.#getPreviousElement(child as Element)?.scrollIntoView(true);
+      this.#getPreviousElement(child as Element)?.scrollIntoView(
+        {block: 'start', inline: 'start'},
+      );
     }
   }
 
