@@ -5,8 +5,10 @@
     "allowJs": true
   },
   "include": [
+    "cypress",
     "**/*.test.ts",
     "src/setup-tests.ts",
-    "**/__mocks__/**/*"
+    "**/__mocks__/**/*",
+    "cypress.config.ts"
   ]
 }

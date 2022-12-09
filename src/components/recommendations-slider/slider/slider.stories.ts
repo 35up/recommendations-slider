@@ -12,6 +12,7 @@ export const Default: Story = () => html`
   <up-slider>${(arrayRange(0, 20)
     .map(n => html`
     <div
+      class="slide"
       style="
         width: 200px;
         height: 350px;

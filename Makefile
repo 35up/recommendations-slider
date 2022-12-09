@@ -26,6 +26,10 @@
 node_modules: .npmrc
 	npm i
 
+.PHONY: start
+start: node_modules
+	npm run start
+
 .PHONY: build
 build: node_modules
 	npm run build
@@ -34,8 +38,12 @@ build: node_modules
 test-unit: node_modules
 	npm run test
 
+.PHONY: test-cypress
+test-cypress: node_modules
+	npm run cy:run
+
 .PHONY: test
-test: test-unit
+test: test-unit test-cypress
 
 .PHONY: lint
 lint: node_modules

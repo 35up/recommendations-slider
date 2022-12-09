@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Component library to include 35up Recommendations in yur store",
   "scripts": {
+    "start": "npm run storybook",
     "build": "rollup --config",
     "lint": "eslint --ext .js,.ts .",
     "test": "jest --passWithNoTests ./src",
@@ -10,7 +11,8 @@
     "test:coverage": "npm test -- --coverage",
     "prepublishOnly": "make ci",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "cy:run": "cypress run --e2e"
   },
   "repository": {
     "type": "git",
@@ -27,6 +29,7 @@
   "homepage": "https://github.com/35up/tslib-boilerplate#readme",
   "dependencies": {
     "@35up/tslib-utils": "^2.3.2",
+    "cypress": "^12.0.2",
     "lit": "^2.4.1",
     "tslib": "^2.4.1"
   },
