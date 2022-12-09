@@ -59,24 +59,24 @@ export class Slider extends LitElement {
       && parentRect.right - childRect.right > THRESHOLD;
   }
 
-  #getNextElement(child: ChildNode | null): Element | null {
+  #getNextElement(child: ChildNode | null): HTMLElement | null {
     if (!child) return null;
 
     let next = child.nextSibling;
 
-    while (next && !(next instanceof Element)) {
+    while (next && !(next instanceof HTMLElement)) {
       next = next.nextSibling;
     }
 
     return next;
   }
 
-  #getPreviousElement(child: ChildNode | null): Element | null {
+  #getPreviousElement(child: ChildNode | null): HTMLElement | null {
     if (!child) return null;
 
     let next = child.previousSibling;
 
-    while (next && !(next instanceof Element)) {
+    while (next && !(next instanceof HTMLElement)) {
       next = next.previousSibling;
     }
 
@@ -95,21 +95,29 @@ export class Slider extends LitElement {
   #scrollToNext(): void {
     const child = this.#getFistVisibleElement();
 
-    if (child) {
-      this.#getNextElement(child as Element)?.scrollIntoView(
-        {block: 'start', inline: 'start'},
-      );
-    }
+    if (!child) return;
+
+    const nextElement = this.#getNextElement(child as Element);
+
+    if (!nextElement) return;
+
+    nextElement.offsetParent!.scrollTo({
+      left: nextElement.offsetLeft,
+    });
   }
 
   #scrollToPrevious(): void {
     const child = this.#getFistVisibleElement();
 
-    if (child) {
-      this.#getPreviousElement(child as Element)?.scrollIntoView(
-        {block: 'start', inline: 'start'},
-      );
-    }
+    if (!child) return;
+
+    const previousElement = this.#getPreviousElement(child as Element);
+
+    if (!previousElement) return;
+
+    previousElement.offsetParent!.scrollTo({
+      left: previousElement.offsetLeft,
+    });
   }
 
   render(): TemplateResult {
