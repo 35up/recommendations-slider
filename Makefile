@@ -38,12 +38,12 @@ build: node_modules
 test-unit: node_modules
 	npm run test
 
-.PHONY: test-cypress
-test-cypress: node_modules
+.PHONY: test-components
+test-components: node_modules
 	npm run cy:run
 
 .PHONY: test
-test: test-unit test-cypress
+test: test-unit test-components
 
 .PHONY: lint
 lint: node_modules
