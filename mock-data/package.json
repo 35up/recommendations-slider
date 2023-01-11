@@ -4,6 +4,6 @@
   "main": "index.js",
   "private": true,
   "dependencies": {
-    "@35up/js-sdk": "^0.5.1"
+    "@35up/js-sdk-browser": "^1.0.0-rc.1"
   }
 }

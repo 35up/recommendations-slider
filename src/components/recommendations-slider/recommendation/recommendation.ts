@@ -1,5 +1,5 @@
 import { css, html, LitElement, TemplateResult } from 'lit';
-import { ProductRecommendation } from '@35up/js-sdk';
+import { ProductRecommendation } from '@35up/js-sdk-browser';
 
 
 export class Recommendation extends LitElement {

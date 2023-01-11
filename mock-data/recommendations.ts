@@ -1,4 +1,4 @@
-import { ProductRecommendation } from '@35up/js-sdk';
+import { ProductRecommendation } from '@35up/js-sdk-browser';
 
 
 export const recommendations: ProductRecommendation[] = [

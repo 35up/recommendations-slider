@@ -29,8 +29,7 @@
   },
   "homepage": "https://github.com/35up/tslib-boilerplate#readme",
   "dependencies": {
-    "@35up/js-sdk": "^0.5.1",
-    "@35up/tslib-i18n": "^1.1.1",
+    "@35up/js-sdk-browser": "^1.0.0",
     "@35up/tslib-utils": "^2.3.2",
     "lit": "^2.4.1",
     "tslib": "^2.4.1"
