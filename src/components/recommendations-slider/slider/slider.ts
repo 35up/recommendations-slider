@@ -14,7 +14,7 @@ export class Slider extends LitElement {
     slot {
       display: flex;
       position: relative;
-      gap: 0.5rem;
+      gap: 1rem;
       justify-content: flex-start;
       width: 100%;
       overflow: auto;

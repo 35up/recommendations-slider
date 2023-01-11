@@ -1,10 +1,21 @@
 import { LitElement, html, TemplateResult } from 'lit';
+import { repeat } from 'lit/directives/repeat';
+
+import { recommendations } from 'mock-data';
 import './slider';
+import './recommendation';
 
 
 export class RecommendationsSlider extends LitElement {
+  constructor() {
+    super();
+    this.setAttribute('role', 'list');
+  }
+
   render(): TemplateResult {
-    return html`<up-slider>Recommended</up-slider>`;
+    return html`<up-slider>${repeat(recommendations, recommendation => (
+      html`<up-recommendation .recommendation=${recommendation}></up-recommendation>`
+    ))}</up-slider>`;
   }
 }
 
