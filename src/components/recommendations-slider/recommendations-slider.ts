@@ -1,4 +1,4 @@
-import { LitElement, html, TemplateResult, PropertyValues } from 'lit';
+import { LitElement, html, TemplateResult, PropertyValues, css } from 'lit';
 import { repeat } from 'lit/directives/repeat';
 import { choose } from 'lit/directives/choose';
 import { map } from 'lit/directives/map';
@@ -30,6 +30,34 @@ export class RecommendationsSlider extends LitElement {
     limit: {type: Number},
     recommendations: {state: true},
   };
+
+  static styles = css`
+    :host {
+      --recommendation-height: 25em;
+      --color-shimmer: rgba(191, 191, 191, 0.2);
+      --color-shimmer-light: rgba(212, 212, 212, 0.1);
+    }
+
+    .shimmer {
+      height: var(--recommendation-height);
+      max-height: 30em;
+      width: 15em;
+      animation: 2s cubic-bezier(0.4, 0, 0.2, 1) 0.5s infinite shimmer;
+      background: linear-gradient(to right,
+      var(--color-shimmer-light) 0%,
+      var(--color-shimmer) 50%,
+      var(--color-shimmer-light) 100%);
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -30em 0;
+      }
+      100% {
+        background-position: 30em 0;
+      }
+    }
+  `;
 
   baseProduct: BaseProduct;
   customer?: Customer;

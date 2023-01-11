@@ -12,7 +12,7 @@ export class Recommendation extends LitElement {
       position: relative;
       display: grid;
       gap: 0.5em;
-      height: var(--recommendation-height, auto);
+      height: var(--recommendation-height, 25em);
       max-height: 30em;
       max-width: 15em;
       align-items: start;
