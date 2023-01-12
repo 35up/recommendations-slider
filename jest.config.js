@@ -1,7 +1,7 @@
 module.exports = {
   setupFilesAfterEnv: ['./src/setup-tests.ts'],
   transformIgnorePatterns: [
-    '/node_modules/(?!lit|@lit|@35up)',
+    '/node_modules/(?!lit|@lit|@35up|nanoid)',
   ],
   coverageDirectory: './coverage',
   coverageThreshold: {
@@ -15,6 +15,6 @@ module.exports = {
   testEnvironment: 'jsdom',
   collectCoverageFrom: ['src/**/*.ts'],
   transform: {
-    '^.+\\.[jt]s$': ['ts-jest', {tsConfig: './tsconfig.test.json'}],
+    '^.+\\.[jt]s$': ['ts-jest', {tsconfig: './tsconfig.test.json'}],
   },
 };
