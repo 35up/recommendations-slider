@@ -3,13 +3,13 @@
   "compilerOptions": {
     "module": "CommonJS",
     "allowJs": true,
-    "strictNullChecks": false,
   },
   "include": [
     "cypress",
     "**/*.test.ts",
     "src/setup-tests.ts",
     "**/__mocks__/**/*",
-    "cypress.config.ts"
+    "cypress.config.ts",
+    "mock-data"
   ]
 }

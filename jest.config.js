@@ -3,6 +3,9 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/(?!lit|@lit|@35up|nanoid)',
   ],
+  moduleNameMapper: {
+    '^lit/directives/(\\w+)$': 'lit/directives/$1.js',
+  },
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {

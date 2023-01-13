@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Component library to include 35up Recommendations in yur store",
   "scripts": {
-    "start": "storybook",
+    "start": "npm run storybook",
     "build": "rollup --config",
     "lint": "eslint --ext .js,.ts .",
     "test": "jest --passWithNoTests ./src",
