@@ -7,7 +7,7 @@ import './recommendation';
 
 
 describe('recommendation', () => {
-  const recommendation = recommendations[0];
+  const recommendation = recommendations[0]!;
 
   it('renders with product name, image and price', async () => {
     const container = await render(
@@ -15,12 +15,12 @@ describe('recommendation', () => {
     );
 
     expect(container.shadowRoot).to.have.descendant('img');
-    expect(container.shadowRoot.querySelector('img')).to.have.attr(
+    expect(container.shadowRoot!.querySelector('img')).to.have.attr(
       'src',
       recommendation.images.thumbnail,
     );
     expect(container.shadowRoot).to.contain.text(
-      recommendation.price.formatted,
+      recommendation.price!.formatted,
     );
     expect(container.shadowRoot).to.contain.text(recommendation.name);
   });
@@ -31,7 +31,7 @@ describe('recommendation', () => {
     );
 
     expect(container.shadowRoot).to.have.descendants('button');
-    const button = container.shadowRoot.querySelector('button');
+    const button = container.shadowRoot!.querySelector('button');
     expect(button).to.contain.text('Add to Cart');
   });
 
@@ -44,7 +44,7 @@ describe('recommendation', () => {
           @add-to-cart=${spy}
         />
       `);
-      container.shadowRoot.querySelector('button').click();
+      container.shadowRoot!.querySelector('button')!.click();
 
       expect(spy).to.have.been.calledWith(sinon.match({
         detail: recommendation,
