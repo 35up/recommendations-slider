@@ -75,4 +75,24 @@ describe('RecommendationSlider', () => {
       expect(element.recommendation).to.equal(recommendations[index]);
     }
   });
+
+  describe('when a recommendation is clicked', () => {
+    it('emits a `recommendation-click` event', async () => {
+      const spy = sinon.spy();
+      const container = await render(html`
+        <up-recommendations-slider
+          seller="35up-test"
+          language="de"
+          base-product='{"title": "apple iphone 12"}'
+          @recommendation-click=${spy}
+        />
+      `);
+
+      container.shadowRoot!.querySelectorAll('up-recommendation')[2]!.click();
+
+      expect(spy).to.have.been.calledOnceWith(sinon.match({
+        detail: recommendations[2],
+      }));
+    });
+  });
 });

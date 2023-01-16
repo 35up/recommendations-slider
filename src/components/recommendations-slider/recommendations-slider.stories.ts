@@ -16,6 +16,9 @@ type TProps = {
   limit?: number;
   height?: string;
   fontSize?: string;
+  click: EventListener,
+  recommendationClick: EventListener,
+  addToCart: EventListener
 };
 
 export default {
@@ -30,6 +33,9 @@ export default {
     limit: {control: 'number'},
     height: {control: 'text', name: 'Recommendations Height'},
     fontSize: {control: 'text', name: 'Font Size'},
+    click: {action: 'click'},
+    recommendationClick: {action: 'recommendation-click'},
+    addToCart: {action: 'add-to-cart'},
   },
   args: {
     baseProduct: {
@@ -48,6 +54,9 @@ export const Default: Story<TProps> = ({
   limit,
   height,
   fontSize,
+  click,
+  recommendationClick,
+  addToCart,
 }) => html`
   <up-recommendations-slider
     base-product=${JSON.stringify(baseProduct)}
@@ -57,6 +66,9 @@ export const Default: Story<TProps> = ({
     country=${ifDefined(country)}
     session=${ifDefined(session)}
     limit=${ifDefined(limit)}
+    @click=${click}
+    @recommendation-click=${recommendationClick}
+    @add-to-cart=${addToCart}
     style=${styleMap({'--recommendation-height': height, 'font-size': fontSize})}
   ></up-recommendations-slider>
 `;

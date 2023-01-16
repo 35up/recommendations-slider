@@ -106,10 +106,18 @@ export class RecommendationsSlider extends LitElement {
   private renderRecommendations(
     recommendations: ProductRecommendation[],
   ): TemplateResult {
-    return html`<up-slider>${repeat(recommendations, recommendation => html`
-      <up-recommendation .recommendation=${recommendation}>
-      </up-recommendation>
-    `)}</up-slider>`;
+    return html`<up-slider>${repeat(recommendations, (recommendation) => {
+      const handleRecommendationClick = () => this.dispatchEvent(
+        new CustomEvent('recommendation-click', {detail: recommendation}),
+      );
+
+      return html`
+        <up-recommendation
+          .recommendation=${recommendation}
+          @click=${handleRecommendationClick}>
+        </up-recommendation>
+      `;
+    })}</up-slider>`;
   }
 
   private renderShimmers(): TemplateResult {
