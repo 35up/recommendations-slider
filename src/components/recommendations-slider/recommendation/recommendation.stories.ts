@@ -5,17 +5,32 @@ import { recommendations } from 'mock-data';
 import './recommendation';
 
 
+type TProps = {
+  recommendation: ProductRecommendation;
+  click: EventListener;
+  addToCart: EventListener;
+};
+
 export default {
   title: 'Components/Recommendation',
   argTypes: {
     recommendation: {control: 'object'},
+    addToCart: {action: 'add-to-cart'},
+    click: {action: 'click'},
   },
 } as Meta;
 
-export const Default: Story<{recommendation: ProductRecommendation}> = ({
+export const Default: Story<TProps> = ({
   recommendation,
+  click,
+  addToCart,
 }) => html`
-  <up-recommendation .recommendation=${recommendation}></up-recommendation>
+  <up-recommendation
+    .recommendation=${recommendation}
+    @click=${click}
+    @add-to-cart=${addToCart}
+  >
+  </up-recommendation>
 `;
 
 Default.args = {

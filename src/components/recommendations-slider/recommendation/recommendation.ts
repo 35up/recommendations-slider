@@ -56,12 +56,18 @@ export class Recommendation extends LitElement {
   `;
 
   recommendation: ProductRecommendation;
-  #handleAddToCartClick() {
-    this.dispatchEvent(new CustomEvent('add-to-cart', {
+  #handleAddToCartClick(e: Event) {
+    const customEvent = new CustomEvent('add-to-cart', {
       detail: this.recommendation,
       composed: true,
       bubbles: true,
-    }));
+      cancelable: true,
+    });
+    this.dispatchEvent(customEvent);
+
+    if (!customEvent.defaultPrevented) {
+      e.preventDefault();
+    }
   }
 
   constructor() {

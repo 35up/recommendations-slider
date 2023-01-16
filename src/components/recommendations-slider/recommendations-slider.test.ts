@@ -77,9 +77,10 @@ describe('RecommendationSlider', () => {
   });
 
   describe('when a recommendation is clicked', () => {
-    it('emits a `recommendation-click` event', async () => {
-      const spy = sinon.spy();
-      const container = await render(html`
+    describe('click event has not been canceled', () => {
+      it('emits a `recommendation-click` event', async () => {
+        const spy = sinon.spy();
+        const container = await render(html`
         <up-recommendations-slider
           seller="35up-test"
           language="de"
@@ -88,11 +89,33 @@ describe('RecommendationSlider', () => {
         />
       `);
 
-      container.shadowRoot!.querySelectorAll('up-recommendation')[2]!.click();
+        container.shadowRoot!.querySelectorAll('up-recommendation')[2]!.click();
 
-      expect(spy).to.have.been.calledOnceWith(sinon.match({
-        detail: recommendations[2],
-      }));
+        expect(spy).to.have.been.calledOnceWith(sinon.match({
+          detail: recommendations[2],
+        }));
+      });
+    });
+
+    describe('click event has been canceled', () => {
+      it('does not emit a `recommendation-click` event', async () => {
+        const spy = sinon.spy();
+        const container = await render(html`
+          <up-recommendations-slider
+            seller="35up-test"
+            language="de"
+            base-product='{"title": "apple iphone 12"}'
+            @recommendation-click=${spy}
+          />
+        `);
+
+        const clickEvent = new MouseEvent('click', {cancelable: true});
+        clickEvent.preventDefault();
+        container.shadowRoot!.querySelectorAll('up-recommendation')[2]!
+          .dispatchEvent(clickEvent);
+
+        expect(spy).to.have.not.been.called;
+      });
     });
   });
 });
