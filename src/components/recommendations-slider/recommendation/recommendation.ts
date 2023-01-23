@@ -56,6 +56,7 @@ export class Recommendation extends LitElement {
   `;
 
   recommendation: ProductRecommendation;
+
   #handleAddToCartClick(e: Event) {
     const customEvent = new CustomEvent('add-to-cart', {
       detail: this.recommendation,
