@@ -93,13 +93,13 @@ export class Recommendation extends LitElement {
   }
 }
 
-if (!window.customElements.get('up-recommendation')) {
-  window.customElements.define('up-recommendation', Recommendation);
+if (!window.customElements.get('tfup-recommendation')) {
+  window.customElements.define('tfup-recommendation', Recommendation);
 }
 
 declare global {
   interface HTMLElementTagNameMap {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    'up-recommendation': Recommendation;
+    'tfup-recommendation': Recommendation;
   }
 }

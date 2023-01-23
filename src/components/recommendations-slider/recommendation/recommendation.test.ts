@@ -11,7 +11,7 @@ describe('recommendation', () => {
 
   it('renders with product name, image and price', async () => {
     const container = await render(
-      html`<up-recommendation .recommendation=${recommendation} />`,
+      html`<tfup-recommendation .recommendation=${recommendation} />`,
     );
 
     expect(container.shadowRoot).to.have.descendant('img');
@@ -27,7 +27,7 @@ describe('recommendation', () => {
 
   it('has a button to add to cart', async () => {
     const container = await render(
-      html`<up-recommendation .recommendation=${recommendation} />`,
+      html`<tfup-recommendation .recommendation=${recommendation} />`,
     );
 
     expect(container.shadowRoot).to.have.descendants('button');
@@ -39,7 +39,7 @@ describe('recommendation', () => {
     it('emits add-to-cart event', async () => {
       const spy = sinon.spy();
       const container = await render(html`
-        <up-recommendation
+        <tfup-recommendation
           .recommendation=${recommendation}
           @add-to-cart=${spy}
         />
@@ -57,7 +57,7 @@ describe('recommendation', () => {
       it('prevents default of the click event', async () => {
         const spy = sinon.spy();
         const container = await render(html`
-          <up-recommendation
+          <tfup-recommendation
             .recommendation=${recommendation}
             @click=${spy}
             @add-to-cart=${() => { /* nothing */ }}
@@ -75,7 +75,7 @@ describe('recommendation', () => {
       it('does not prevent default of the click event', async () => {
         const spy = sinon.spy();
         const container = await render(html`
-          <up-recommendation
+          <tfup-recommendation
             .recommendation=${recommendation}
             @click=${spy}
             @add-to-cart=${(e: Event) => e.preventDefault()}

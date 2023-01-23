@@ -58,7 +58,7 @@ export const Default: Story<TProps> = ({
   recommendationClick,
   addToCart,
 }) => html`
-  <up-recommendations-slider
+  <tfup-recommendations-slider
     base-product=${JSON.stringify(baseProduct)}
     seller=${ifDefined(seller)}
     customer=${ifDefined(customer)}
@@ -70,7 +70,7 @@ export const Default: Story<TProps> = ({
     @recommendation-click=${recommendationClick}
     @add-to-cart=${addToCart}
     style=${styleMap({'--recommendation-height': height, 'font-size': fontSize})}
-  ></up-recommendations-slider>
+  ></tfup-recommendations-slider>
 `;
 
 export const WithRecommendationsHeight: Story<TProps> = Default.bind(undefined);

@@ -20,7 +20,7 @@ describe('RecommendationSlider', () => {
 
   it('initialises the sdk and request recommendations', async () => {
     await render(html`
-      <up-recommendations-slider
+      <tfup-recommendations-slider
         seller="35up-test"
         language="de"
         base-product='{"title": "apple iphone 12"}'
@@ -47,7 +47,7 @@ describe('RecommendationSlider', () => {
         return (makeSuccess(recommendations));
       });
     const container = await render(html`
-      <up-recommendations-slider
+      <tfup-recommendations-slider
         seller="35up-test"
         language="de"
         base-product='{"title": "apple iphone 12"}'
@@ -55,21 +55,21 @@ describe('RecommendationSlider', () => {
     `);
 
     expect(container.shadowRoot).to.have.descendant('up-slider .shimmer');
-    expect(container.shadowRoot).to.not.have.descendant('up-recommendation');
+    expect(container.shadowRoot).to.not.have.descendant('tfup-recommendation');
   });
 
   it('shows recommendations', async () => {
     const container = await render(html`
-      <up-recommendations-slider
+      <tfup-recommendations-slider
         seller="35up-test"
         language="de"
         base-product='{"title": "apple iphone 12"}'
       />
     `);
 
-    expect(container.shadowRoot).to.have.descendant('up-recommendation');
+    expect(container.shadowRoot).to.have.descendant('tfup-recommendation');
     const elements = container.shadowRoot!.querySelectorAll(
-      'up-recommendation',
+      'tfup-recommendation',
     );
     for (const [ index, element ] of elements.entries()) {
       expect(element.recommendation).to.equal(recommendations[index]);
@@ -81,7 +81,7 @@ describe('RecommendationSlider', () => {
       it('emits a `recommendation-click` event', async () => {
         const spy = sinon.spy();
         const container = await render(html`
-        <up-recommendations-slider
+        <tfup-recommendations-slider
           seller="35up-test"
           language="de"
           base-product='{"title": "apple iphone 12"}'
@@ -89,7 +89,7 @@ describe('RecommendationSlider', () => {
         />
       `);
 
-        container.shadowRoot!.querySelectorAll('up-recommendation')[2]!.click();
+        container.shadowRoot!.querySelectorAll('tfup-recommendation')[2]!.click();
 
         expect(spy).to.have.been.calledOnceWith(sinon.match({
           detail: recommendations[2],
@@ -101,7 +101,7 @@ describe('RecommendationSlider', () => {
       it('does not emit a `recommendation-click` event', async () => {
         const spy = sinon.spy();
         const container = await render(html`
-          <up-recommendations-slider
+          <tfup-recommendations-slider
             seller="35up-test"
             language="de"
             base-product='{"title": "apple iphone 12"}'
@@ -111,7 +111,7 @@ describe('RecommendationSlider', () => {
 
         const clickEvent = new MouseEvent('click', {cancelable: true});
         clickEvent.preventDefault();
-        container.shadowRoot!.querySelectorAll('up-recommendation')[2]!
+        container.shadowRoot!.querySelectorAll('tfup-recommendation')[2]!
           .dispatchEvent(clickEvent);
 
         expect(spy).to.have.not.been.called;

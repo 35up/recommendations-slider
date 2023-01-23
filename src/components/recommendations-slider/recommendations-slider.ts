@@ -116,10 +116,10 @@ export class RecommendationsSlider extends LitElement {
       };
 
       return html`
-        <up-recommendation
+        <tfup-recommendation
           .recommendation=${recommendation}
           @click=${handleRecommendationClick}>
-        </up-recommendation>
+        </tfup-recommendation>
       `;
     })}</up-slider>`;
   }
@@ -143,9 +143,9 @@ export class RecommendationsSlider extends LitElement {
   }
 }
 
-if (!window.customElements.get('up-recommendations-slider')) {
+if (!window.customElements.get('tfup-recommendations-slider')) {
   window.customElements.define(
-    'up-recommendations-slider',
+    'tfup-recommendations-slider',
     RecommendationsSlider,
   );
 }
@@ -153,6 +153,6 @@ if (!window.customElements.get('up-recommendations-slider')) {
 declare global {
   interface HTMLElementTagNameMap {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    'up-recommendations-slider': RecommendationsSlider;
+    'tfup-recommendations-slider': RecommendationsSlider;
   }
 }

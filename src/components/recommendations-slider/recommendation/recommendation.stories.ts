@@ -25,12 +25,12 @@ export const Default: Story<TProps> = ({
   click,
   addToCart,
 }) => html`
-  <up-recommendation
+  <tfup-recommendation
     .recommendation=${recommendation}
     @click=${click}
     @add-to-cart=${addToCart}
   >
-  </up-recommendation>
+  </tfup-recommendation>
 `;
 
 Default.args = {
