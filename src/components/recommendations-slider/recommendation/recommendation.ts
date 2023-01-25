@@ -14,14 +14,15 @@ export class Recommendation extends LitElement {
       gap: 0.5em;
       height: var(--recommendation-height, 25em);
       max-height: 30em;
-      max-width: 15em;
+      width: 15em;
+      max-width: 100%;
       align-items: start;
       grid-template:
         "image" minmax(5em, 25fr)
         "title" minmax(2.5em, 5fr)
         "price" auto
         "actions" auto
-        / 15em;
+        / min(100%, 15em);
     }
 
     .img {
