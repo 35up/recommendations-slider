@@ -1,4 +1,5 @@
 import { css, html, LitElement, TemplateResult } from 'lit';
+import { createRef, ref } from 'lit/directives/ref';
 
 
 const THRESHOLD = -20;
@@ -48,6 +49,8 @@ export class Slider extends LitElement {
     }
   `;
 
+  #slot = createRef<HTMLSlotElement>();
+
   #isChildVisible(child: Element): boolean {
     const parentRect = this.renderRoot.querySelector('slot')!
       .getBoundingClientRect();
@@ -92,6 +95,15 @@ export class Slider extends LitElement {
     return child;
   }
 
+  #scrollTo(element: HTMLElement): void {
+    const slot = this.#slot.value!;
+    const elementPosition = element.getBoundingClientRect().left;
+    const slotPosition = slot.getBoundingClientRect().left;
+    const left = elementPosition - (slotPosition - slot.scrollLeft);
+
+    slot.scrollTo({left});
+  }
+
   #scrollToNext(): void {
     const child = this.#getFistVisibleElement();
 
@@ -101,9 +113,7 @@ export class Slider extends LitElement {
 
     if (!nextElement) return;
 
-    nextElement.offsetParent!.scrollTo({
-      left: nextElement.offsetLeft,
-    });
+    this.#scrollTo(nextElement);
   }
 
   #scrollToPrevious(): void {
@@ -115,9 +125,8 @@ export class Slider extends LitElement {
 
     if (!previousElement) return;
 
-    previousElement.offsetParent!.scrollTo({
-      left: previousElement.offsetLeft,
-    });
+
+    this.#scrollTo(previousElement);
   }
 
   render(): TemplateResult {
@@ -128,7 +137,7 @@ export class Slider extends LitElement {
           scroll-snap-align: start;
         }
       </style>
-      <slot></slot>
+      <slot ${ref(this.#slot)}></slot>
       <button
         class="left"
         @click=${this.#scrollToPrevious.bind(this)}
