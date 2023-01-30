@@ -1,8 +1,8 @@
 import { render } from '@35up/tslib-test-utils-wc';
 import { html } from 'lit';
 import { expect } from 'chai';
-import { recommendations } from 'mock-data';
 import sinon from 'sinon';
+import { recommendations } from '../../../mock-data';
 import './recommendation';
 
 

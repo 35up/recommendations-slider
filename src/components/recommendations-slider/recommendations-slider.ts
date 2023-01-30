@@ -136,6 +136,7 @@ export class RecommendationsSlider extends LitElement {
       [STATUS.PENDING, () => this.renderShimmers()],
       [STATUS.FAIL, () => html`<div>Failed to load recommendations.</div>`],
       [STATUS.SUCCESS, () => this.renderRecommendations(
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.recommendations.data!,
       )],
     ])}

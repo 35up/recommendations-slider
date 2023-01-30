@@ -8,6 +8,6 @@
     "**/__mocks__/**/*",
     "cypress.config.ts",
     "build",
-    "mock-data"
+    "src/mock-data"
   ]
 }

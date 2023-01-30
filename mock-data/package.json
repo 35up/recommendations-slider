@@ -1,9 +1,0 @@
-{
-  "name": "mock-data",
-  "version": "0.0.1",
-  "main": "index.js",
-  "private": true,
-  "dependencies": {
-    "@35up/js-sdk-browser": "^1.0.0-rc.1"
-  }
-}

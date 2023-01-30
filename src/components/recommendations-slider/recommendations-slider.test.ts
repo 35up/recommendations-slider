@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import sinon from 'sinon';
 import { render, waitForFrame } from '@35up/tslib-test-utils-wc';
 import { makeSuccess } from '@35up/tslib-utils';
-import { recommendations } from 'mock-data';
+import { recommendations } from '../../mock-data';
 import { initialise, sdkInstance } from './__mocks__/@35up/js-sdk-browser';
 import './recommendations-slider';
 
@@ -89,7 +89,9 @@ describe('RecommendationSlider', () => {
         />
       `);
 
-        container.shadowRoot!.querySelectorAll('tfup-recommendation')[2]!.click();
+        container.shadowRoot!.querySelectorAll(
+          'tfup-recommendation',
+        )[2]!.click();
 
         expect(spy).to.have.been.calledOnceWith(sinon.match({
           detail: recommendations[2],

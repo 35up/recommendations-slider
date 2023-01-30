@@ -19,4 +19,44 @@ overrides:
       import/no-extraneous-dependencies:
        - error
        - devDependencies: true
+      '@typescript-eslint/naming-convention':
+        - warn
+        - selector: [enum, enumMember]
+          format: [UPPER_CASE]
+        - selector: [typeAlias]
+          format: [StrictPascalCase]
+          prefix: [T]
+        - selector:
+           - variable
+           - function
+           - parameter
+           - method
+           - classProperty
+           - typeProperty
+          format: [strictCamelCase]
+        - selector:
+           - variable
+           - function
+           - parameter
+           - method
+           - property
+          modifiers: [requiresQuotes]
+          format: null
+        - selector: [variable]
+          modifiers: [const]
+          format:
+            - strictCamelCase
+            - UPPER_CASE
+            - PascalCase
+        - selector: [class]
+          format: [StrictPascalCase]
+        - selector: [parameter]
+          modifiers: [unused]
+          leadingUnderscore: allowSingleOrDouble
+          format: null
+  - files:
+    - '**/*.test.*'
+    - '**/*.cy.*'
+    rules:
+      '@typescript-eslint/no-non-null-assertion': off
 

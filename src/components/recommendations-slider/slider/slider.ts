@@ -52,6 +52,7 @@ export class Slider extends LitElement {
   #slot = createRef<HTMLSlotElement>();
 
   #isChildVisible(child: Element): boolean {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const parentRect = this.renderRoot.querySelector('slot')!
       .getBoundingClientRect();
     const childRect = child.getBoundingClientRect();
@@ -96,6 +97,7 @@ export class Slider extends LitElement {
   }
 
   #scrollTo(element: HTMLElement): void {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const slot = this.#slot.value!;
     const elementPosition = element.getBoundingClientRect().left;
     const slotPosition = slot.getBoundingClientRect().left;

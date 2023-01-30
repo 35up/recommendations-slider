@@ -10,6 +10,6 @@
     "src/setup-tests.ts",
     "**/__mocks__/**/*",
     "cypress.config.ts",
-    "mock-data"
+    "src/mock-data/**/*"
   ]
 }

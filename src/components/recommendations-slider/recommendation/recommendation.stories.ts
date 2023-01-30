@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/web-components';
 import { html } from 'lit';
 import { ProductRecommendation } from '@35up/js-sdk-browser';
-import { recommendations } from 'mock-data';
+import { recommendations } from '../../../mock-data';
 import './recommendation';
 
 

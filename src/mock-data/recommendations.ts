@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { ProductRecommendation } from '@35up/js-sdk-browser';
 
 
