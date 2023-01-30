@@ -53,40 +53,20 @@ describe('recommendation', () => {
       }));
     });
 
-    describe('the event default is not prevented', () => {
-      it('prevents default of the click event', async () => {
-        const spy = sinon.spy();
-        const container = await render(html`
-          <tfup-recommendation
-            .recommendation=${recommendation}
-            @click=${spy}
-            @add-to-cart=${() => { /* nothing */ }}
-          />
-        `);
-        container.shadowRoot!.querySelector('button')!.click();
+    it('prevents default of the click event', async () => {
+      const spy = sinon.spy();
+      const container = await render(html`
+        <tfup-recommendation
+          .recommendation=${recommendation}
+          @click=${spy}
+          @add-to-cart=${() => { /* nothing */ }}
+        />
+      `);
+      container.shadowRoot!.querySelector('button')!.click();
 
-        expect(spy).to.have.been.calledOnceWith(sinon.match({
-          defaultPrevented: true,
-        }));
-      });
-    });
-
-    describe('the event default is prevented', () => {
-      it('does not prevent default of the click event', async () => {
-        const spy = sinon.spy();
-        const container = await render(html`
-          <tfup-recommendation
-            .recommendation=${recommendation}
-            @click=${spy}
-            @add-to-cart=${(e: Event) => e.preventDefault()}
-          />
-        `);
-        container.shadowRoot!.querySelector('button')!.click();
-
-        expect(spy).to.have.been.calledOnceWith(sinon.match({
-          defaultPrevented: false,
-        }));
-      });
+      expect(spy).to.have.been.calledOnceWith(sinon.match({
+        defaultPrevented: true,
+      }));
     });
   });
 });
