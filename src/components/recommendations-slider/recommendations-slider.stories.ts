@@ -44,6 +44,7 @@ export default {
     seller: '35up-test',
   },
 } as Meta<TProps>;
+
 export const Default: Story<TProps> = ({
   baseProduct,
   customer,
