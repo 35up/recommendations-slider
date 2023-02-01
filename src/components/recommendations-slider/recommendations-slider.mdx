@@ -1,0 +1,45 @@
+import { Story } from '@storybook/addon-docs';
+
+
+# Recommendations Slider
+
+<Story id="recommendations-slider--default" />
+
+```jsx
+  <tfup-recommendations-slider
+    base-product={JSON.stringify({
+      title: 'Apple iPhone 12 Pro - Pacific blue',
+    })}
+    seller="35up-test"
+  ></tfup-recommendations-slider>
+```
+
+## Customization
+
+### With Recommendations Height
+
+<Story id="recommendations-slider--with-recommendations-height" />
+
+```jsx
+  <tfup-recommendations-slider
+    base-product={JSON.stringify({
+      title: 'Apple iPhone 12 Pro - Pacific blue',
+    })}
+    seller="35up-test"
+    style="--recommendation-height:20rem;"
+  ></tfup-recommendations-slider>
+```
+
+### With Font Size
+
+<Story id="recommendations-slider--with-font-size" />
+
+```jsx
+  <tfup-recommendations-slider
+    base-product={JSON.stringify({
+      title: 'Apple iPhone 12 Pro - Pacific blue',
+    })}
+    seller="35up-test"
+    style="font-size:10px;"
+  ></tfup-recommendations-slider>
+```
