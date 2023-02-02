@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "module": "CommonJS",
-    "allowJs": true,
+    "allowJs": true
   },
   "include": [
     "cypress",
