@@ -56,7 +56,7 @@ overrides:
           format: null
   - files:
     - '**/*.test.*'
-    - '**/*.cy.*'
+    - '**/*.spec.*'
     rules:
       '@typescript-eslint/no-non-null-assertion': off
 
