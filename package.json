@@ -34,7 +34,7 @@
     "tslib": "^2.4.1"
   },
   "devDependencies": {
-    "@35up/eslint-config-35up-base": "^4.0.4",
+    "@35up/eslint-config-35up-base": "^4.0.6",
     "@35up/tslib-test-utils-wc": "^2.0.0",
     "@babel/core": "^7.20.5",
     "@rollup/plugin-node-resolve": "^15.0.1",
