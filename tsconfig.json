@@ -7,5 +7,7 @@
     "src/setup-tests.ts",
     "**/__mocks__/**/*",
     "cypress.config.ts",
+    "build",
+    "src/mock-data"
   ]
 }

@@ -12,11 +12,8 @@ env:
   es6: true
 overrides:
   - files:
-    - '**/*.stories.*'
-    extends:
-      -  "plugin:storybook/recommended"
+    - '**/*.test.*'
+    - '**/*.spec.*'
     rules:
-      import/no-extraneous-dependencies:
-       - error
-       - devDependencies: true
+      '@typescript-eslint/no-non-null-assertion': off
 

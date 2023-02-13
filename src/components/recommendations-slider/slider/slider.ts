@@ -1,4 +1,5 @@
 import { css, html, LitElement, TemplateResult } from 'lit';
+import { createRef, ref } from 'lit/directives/ref';
 
 
 const THRESHOLD = -20;
@@ -14,7 +15,7 @@ export class Slider extends LitElement {
     slot {
       display: flex;
       position: relative;
-      gap: 0.5rem;
+      gap: 1rem;
       justify-content: flex-start;
       width: 100%;
       overflow: auto;
@@ -48,7 +49,10 @@ export class Slider extends LitElement {
     }
   `;
 
+  #slot = createRef<HTMLSlotElement>();
+
   #isChildVisible(child: Element): boolean {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const parentRect = this.renderRoot.querySelector('slot')!
       .getBoundingClientRect();
     const childRect = child.getBoundingClientRect();
@@ -92,6 +96,16 @@ export class Slider extends LitElement {
     return child;
   }
 
+  #scrollTo(element: HTMLElement): void {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const slot = this.#slot.value!;
+    const elementPosition = element.getBoundingClientRect().left;
+    const slotPosition = slot.getBoundingClientRect().left;
+    const left = elementPosition - (slotPosition - slot.scrollLeft);
+
+    slot.scrollTo({left});
+  }
+
   #scrollToNext(): void {
     const child = this.#getFistVisibleElement();
 
@@ -101,9 +115,7 @@ export class Slider extends LitElement {
 
     if (!nextElement) return;
 
-    nextElement.offsetParent!.scrollTo({
-      left: nextElement.offsetLeft,
-    });
+    this.#scrollTo(nextElement);
   }
 
   #scrollToPrevious(): void {
@@ -115,9 +127,8 @@ export class Slider extends LitElement {
 
     if (!previousElement) return;
 
-    previousElement.offsetParent!.scrollTo({
-      left: previousElement.offsetLeft,
-    });
+
+    this.#scrollTo(previousElement);
   }
 
   render(): TemplateResult {
@@ -128,7 +139,7 @@ export class Slider extends LitElement {
           scroll-snap-align: start;
         }
       </style>
-      <slot></slot>
+      <slot ${ref(this.#slot)}></slot>
       <button
         class="left"
         @click=${this.#scrollToPrevious.bind(this)}

@@ -7,6 +7,8 @@ const pkg = require('./package.json');
 
 
 const buildPath = path.dirname(pkg.module);
+const external = Object.keys(pkg.dependencies || {})
+  .map(d => new RegExp(`${d}`));
 
 module.exports = [
   {
@@ -17,7 +19,7 @@ module.exports = [
       format: 'es',
       sourcemap: true,
     },
-    external: Object.keys(pkg.dependencies || {}),
+    external,
     plugins: [nodeResolve({browser: true}), typescript()],
   },
   {

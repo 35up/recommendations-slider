@@ -1,5 +1,3 @@
-export function hello(what: string): void {
-  console.log('hello ', what);
-}
-
-export const me = 'dev';
+export {
+  type RecommendationsSlider,
+} from './components/recommendations-slider';
