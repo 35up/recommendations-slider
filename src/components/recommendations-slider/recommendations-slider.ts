@@ -200,7 +200,7 @@ export class RecommendationsSlider extends LitElement {
     track.scrollTo({left});
   }
 
-  #scrollToNext(): void {
+  #scrollToNext = (): void => {
     const child = this.#getFistVisibleElement();
 
     if (!child) return;
@@ -210,9 +210,9 @@ export class RecommendationsSlider extends LitElement {
     if (!nextElement) return;
 
     this.#scrollTo(nextElement);
-  }
+  };
 
-  #scrollToPrevious(): void {
+  #scrollToPrevious = (): void => {
     const child = this.#getFistVisibleElement();
 
     if (!child) return;
@@ -223,37 +223,57 @@ export class RecommendationsSlider extends LitElement {
 
 
     this.#scrollTo(previousElement);
-  }
+  };
 
   private renderSlider(slides: TemplateResult): TemplateResult {
     return html`
       <div class="slider">
+        ${this.renderLeftArrow()}
+        <div class="slider-track">
+          ${slides}
+        </div>
+        ${this.renderRightArrow()}
+      </div>
+    `;
+  }
+
+  private renderLeftArrow(): TemplateResult {
+    const hasLeftArrow = this.querySelector('[slot="arrow-left"]');
+
+    return hasLeftArrow
+      ? html`<slot name="arrow-left" @click=${this.#scrollToPrevious}></slot>`
+      : html`
         <button
           class="arrow"
-          @click=${this.#scrollToPrevious.bind(this)}
+          @click=${this.#scrollToPrevious}
           aria-hidden="true"
           part="arrow"
         >
           &lsaquo;
         </button>
-        <div class="slider-track">
-          ${slides}
-        </div>
+      `;
+  }
+
+  private renderRightArrow(): TemplateResult {
+    const hasRightArrow = this.querySelector('[slot="arrow-right"]');
+
+    return hasRightArrow
+      ? html`<slot name="arrow-right" @click=${this.#scrollToNext}></slot>`
+      : html`
         <button
           class="arrow"
-          @click=${this.#scrollToNext.bind(this)}
+          @click=${this.#scrollToNext}
           aria-hidden="true"
           part="arrow"
         >
           &rsaquo;
         </button>
-      </div>
-    `;
+      `;
   }
 
-  private renderRecommendation(
+  private renderRecommendation = (
     recommendation: ProductRecommendation,
-  ): TemplateResult {
+  ): TemplateResult => {
     const handleRecommendationClick = (e: Event) => {
       if (!e.defaultPrevented) {
         this.dispatchEvent(
@@ -272,7 +292,7 @@ export class RecommendationsSlider extends LitElement {
         @click=${handleRecommendationClick}>
       </tfup-recommendation>
     `;
-  }
+  };
 
   private renderShimmers(): TemplateResult {
     return this.renderSlider(html`${map(
@@ -288,7 +308,7 @@ export class RecommendationsSlider extends LitElement {
       [STATUS.SUCCESS, () => this.renderSlider(html`${repeat(
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         this.recommendations.data!,
-        this.renderRecommendation.bind(this),
+        this.renderRecommendation,
       )}`)],
     ])}
     `;

@@ -121,6 +121,19 @@ export const FullyCustomized: Story<TProps> = ({ baseProduct }) => html`
   tfup-recommendations-slider::part(arrow):hover {
     color: #b4cff7;
   }
+
+  button {
+    margin: 0 10px;
+    background: transparent;
+    color: #d3e3fd;
+    border: 1px solid #d3e3fd;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  button:hover {
+    color: #b4cff7;
+    border: 1px solid #b4cff7;
+  }
 </style>
 <tfup-recommendations-slider
   base-product=${JSON.stringify(baseProduct)}
@@ -130,5 +143,8 @@ export const FullyCustomized: Story<TProps> = ({ baseProduct }) => html`
     'font-size': '14px',
     color: '#333',
   })}
-></tfup-recommendations-slider>
+>
+  <button slot="arrow-left"><</button>
+  <button slot="arrow-right">></button>
+</tfup-recommendations-slider>
 `;
