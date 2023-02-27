@@ -1,7 +1,7 @@
 import { html } from 'lit';
 import { styleMap } from 'lit/directives/style-map';
 import { ifDefined } from 'lit/directives/if-defined';
-import { Meta, StoryObj } from '@storybook/web-components';
+import { Meta, Story, StoryObj } from '@storybook/web-components';
 import { BaseProduct, Customer } from '@35up/js-sdk-browser';
 import './recommendations-slider';
 import mdx from './recommendations-slider.mdx';
@@ -93,3 +93,42 @@ export const WithFontSize: StoryObj = {
     fontSize: '10px',
   },
 };
+
+export const FullyCustomized: Story<TProps> = ({ baseProduct }) => html`
+<style>
+  tfup-recommendations-slider::part(recommendation) {
+    border-radius: 10px;
+    background: #eaf1fb;
+    padding: 10px;
+  }
+
+  tfup-recommendations-slider::part(button) {
+    border-radius: 999px;
+    background: #d3e3fd;
+  }
+  tfup-recommendations-slider::part(button):hover {
+    background: #b4cff7;
+  }
+
+  tfup-recommendations-slider::part(price) {
+    font-weight: bold;
+    color: #555;
+  }
+
+  tfup-recommendations-slider::part(arrow) {
+    color: #d3e3fd;
+  }
+  tfup-recommendations-slider::part(arrow):hover {
+    color: #b4cff7;
+  }
+</style>
+<tfup-recommendations-slider
+  base-product=${JSON.stringify(baseProduct)}
+  seller="35up-test"
+  style=${styleMap({
+    '--recommendation-height': '30rem',
+    'font-size': '14px',
+    color: '#333',
+  })}
+></tfup-recommendations-slider>
+`;
