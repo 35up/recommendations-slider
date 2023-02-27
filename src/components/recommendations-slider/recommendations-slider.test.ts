@@ -54,7 +54,7 @@ describe('RecommendationSlider', () => {
       />
     `);
 
-    expect(container.shadowRoot).to.have.descendant('up-slider .shimmer');
+    expect(container.shadowRoot).to.have.descendant('.slider .shimmer');
     expect(container.shadowRoot).to.not.have.descendant('tfup-recommendation');
   });
 
@@ -68,7 +68,7 @@ describe('RecommendationSlider', () => {
     `);
 
     expect(container.shadowRoot).to.have.descendant('tfup-recommendation');
-    expect(container.shadowRoot).to.not.have.descendant('up-slider .shimmer');
+    expect(container.shadowRoot).to.not.have.descendant('.slider .shimmer');
     const elements = container.shadowRoot!.querySelectorAll(
       'tfup-recommendation',
     );
