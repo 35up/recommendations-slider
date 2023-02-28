@@ -12,7 +12,8 @@
     "prepublishOnly": "make ci",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "cy:run": "cypress run --e2e"
+    "cy:run": "cypress run --e2e",
+    "cy:open": "cypress open --browser chrome --e2e"
   },
   "repository": {
     "type": "git",
