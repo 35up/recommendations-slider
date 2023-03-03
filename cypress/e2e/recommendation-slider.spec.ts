@@ -15,7 +15,7 @@ function slideToElement(index: number): void {
 
 describe('recommendation-slider', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:6006/iframe.html?id=recommendations-slider--default&viewMode=story');
+    cy.visit('http://localhost:6006/iframe.html?id=recommendations-slider--default&viewMode=story', {timeout: 20000});
   });
 
   it('can slide right', () => {
@@ -32,6 +32,7 @@ describe('recommendation-slider', () => {
   });
 
   it('can slide left', () => {
+    cy.get('tfup-recommendations-slider');
     slideToElement(4);
     cy.get('tfup-recommendations-slider').shadow()
       .find('.slider > button').eq(0)
