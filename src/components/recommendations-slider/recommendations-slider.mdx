@@ -47,3 +47,65 @@ import { Story } from '@storybook/addon-docs';
     style="font-size:10px;"
   ></tfup-recommendations-slider>
 ```
+
+### Fully Customized
+
+<Story id="recommendations-slider--fully-customized" />
+
+```jsx
+  <style>
+    tfup-recommendations-slider::part(recommendation) {
+      border-radius: 10px;
+      background: #eaf1fb;
+      padding: 10px;
+    }
+
+    tfup-recommendations-slider::part(button) {
+      border-radius: 999px;
+      background: #d3e3fd;
+    }
+
+    tfup-recommendations-slider::part(button):hover {
+      background: #b4cff7;
+    }
+
+    tfup-recommendations-slider::part(price) {
+      font-weight: bold;
+      color: #555;
+    }
+
+    tfup-recommendations-slider::part(arrow) {
+      color: #d3e3fd;
+    }
+
+    tfup-recommendations-slider::part(arrow):hover {
+      color: #b4cff7;
+    }
+
+    button {
+      margin: 0 10px;
+      background: transparent;
+      color: #d3e3fd;
+      border: 1px solid #d3e3fd;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      color: #b4cff7;
+      border: 1px solid #b4cff7;
+    }
+  </style>
+  <tfup-recommendations-slider
+    base-product={JSON.stringify(baseProduct)}
+    seller="35up-test"
+    style={
+      '--recommendation-height': '30rem',
+      'font-size': '14px',
+      color: '#333',
+    }
+  >
+    <button slot="arrow-left"><</button>
+    <button slot="arrow-right">></button>
+  </tfup-recommendations-slider>
+```

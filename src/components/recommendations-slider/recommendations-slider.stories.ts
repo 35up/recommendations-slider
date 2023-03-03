@@ -1,4 +1,4 @@
-import { html } from 'lit';
+import { html, render } from 'lit';
 import { styleMap } from 'lit/directives/style-map';
 import { ifDefined } from 'lit/directives/if-defined';
 import { Meta, Story, StoryObj } from '@storybook/web-components';
@@ -94,57 +94,69 @@ export const WithFontSize: StoryObj = {
   },
 };
 
-export const FullyCustomized: Story<TProps> = ({ baseProduct }) => html`
-<style>
-  tfup-recommendations-slider::part(recommendation) {
-    border-radius: 10px;
-    background: #eaf1fb;
-    padding: 10px;
-  }
-
-  tfup-recommendations-slider::part(button) {
-    border-radius: 999px;
-    background: #d3e3fd;
-  }
-  tfup-recommendations-slider::part(button):hover {
-    background: #b4cff7;
-  }
-
-  tfup-recommendations-slider::part(price) {
-    font-weight: bold;
-    color: #555;
-  }
-
-  tfup-recommendations-slider::part(arrow) {
-    color: #d3e3fd;
-  }
-  tfup-recommendations-slider::part(arrow):hover {
-    color: #b4cff7;
-  }
-
-  button {
-    margin: 0 10px;
-    background: transparent;
-    color: #d3e3fd;
-    border: 1px solid #d3e3fd;
-    border-radius: 999px;
-    cursor: pointer;
-  }
-  button:hover {
-    color: #b4cff7;
-    border: 1px solid #b4cff7;
-  }
-</style>
-<tfup-recommendations-slider
-  base-product=${JSON.stringify(baseProduct)}
-  seller="35up-test"
-  style=${styleMap({
+export const FullyCustomized: Story<TProps> = ({ baseProduct }) => {
+  const wrapper = document.createElement('div');
+  wrapper.attachShadow({mode: 'open'});
+  const recoSliderStyle = styleMap({
     '--recommendation-height': '30rem',
     'font-size': '14px',
     color: '#333',
-  })}
->
-  <button slot="arrow-left"><</button>
-  <button slot="arrow-right">></button>
-</tfup-recommendations-slider>
-`;
+  });
+  render(
+    html`
+      <style>
+        tfup-recommendations-slider::part(recommendation) {
+          border-radius: 10px;
+          background: #eaf1fb;
+          padding: 10px;
+        }
+
+        tfup-recommendations-slider::part(button) {
+          border-radius: 999px;
+          background: #d3e3fd;
+        }
+
+        tfup-recommendations-slider::part(button):hover {
+          background: #b4cff7;
+        }
+
+        tfup-recommendations-slider::part(price) {
+          font-weight: bold;
+          color: #555;
+        }
+
+        tfup-recommendations-slider::part(arrow) {
+          color: #d3e3fd;
+        }
+
+        tfup-recommendations-slider::part(arrow):hover {
+          color: #b4cff7;
+        }
+
+        button {
+          margin: 0 10px;
+          background: transparent;
+          color: #d3e3fd;
+          border: 1px solid #d3e3fd;
+          border-radius: 999px;
+          cursor: pointer;
+        }
+
+        button:hover {
+          color: #b4cff7;
+          border: 1px solid #b4cff7;
+        }
+      </style>
+      <tfup-recommendations-slider
+        base-product=${JSON.stringify(baseProduct)}
+        seller="35up-test"
+        style=${recoSliderStyle}
+      >
+        <button slot="arrow-left"><</button>
+        <button slot="arrow-right">></button>
+      </tfup-recommendations-slider>
+    `,
+    wrapper.shadowRoot as unknown as HTMLElement,
+  );
+  return wrapper;
+};
