@@ -14,15 +14,15 @@ describe('recommendation', () => {
       html`<tfup-recommendation .recommendation=${recommendation} />`,
     );
 
-    expect(container.shadowRoot).to.have.descendant('img');
-    expect(container.shadowRoot!.querySelector('img')).to.have.attr(
+    expect(container).to.have.descendant('img');
+    expect(container.querySelector('img')).to.have.attr(
       'src',
       recommendation.images.thumbnail,
     );
-    expect(container.shadowRoot).to.contain.text(
+    expect(container).to.contain.text(
       recommendation.price!.formatted,
     );
-    expect(container.shadowRoot).to.contain.text(recommendation.name);
+    expect(container).to.contain.text(recommendation.name);
   });
 
   it('has a button to add to cart', async () => {
@@ -30,8 +30,8 @@ describe('recommendation', () => {
       html`<tfup-recommendation .recommendation=${recommendation} />`,
     );
 
-    expect(container.shadowRoot).to.have.descendants('button');
-    const button = container.shadowRoot!.querySelector('button');
+    expect(container).to.have.descendants('button');
+    const button = container.querySelector('button');
     expect(button).to.contain.text('Add to Cart');
   });
 
@@ -44,7 +44,7 @@ describe('recommendation', () => {
           @add-to-cart=${spy}
         />
       `);
-      container.shadowRoot!.querySelector('button')!.click();
+      container.querySelector('button')!.click();
 
       expect(spy).to.have.been.calledWith(sinon.match({
         detail: recommendation,
@@ -59,10 +59,10 @@ describe('recommendation', () => {
         <tfup-recommendation
           .recommendation=${recommendation}
           @click=${spy}
-          @add-to-cart=${() => { /* nothing */ }}
+          @add-to-cart=${() => null}
         />
       `);
-      container.shadowRoot!.querySelector('button')!.click();
+      container.querySelector('button')!.click();
 
       expect(spy).to.have.been.calledOnceWith(sinon.match({
         defaultPrevented: true,
