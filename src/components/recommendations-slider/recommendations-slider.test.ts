@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { describe } from '@jest/globals';
 import { html } from 'lit';
 import { expect } from 'chai';
 import sinon from 'sinon';
