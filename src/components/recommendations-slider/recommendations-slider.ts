@@ -289,9 +289,7 @@ export class RecommendationsSlider extends LitElement {
   ): TemplateResult => {
     const handleRecommendationClick = (e: Event) => {
       this.#trackEvent(
-        e.type === 'add-to-cart'
-          ? TRACKING_EVENTS.CART_CLICK
-          : TRACKING_EVENTS.RECOMMENDATION_CLICK,
+        TRACKING_EVENTS.RECOMMENDATION_CLICK,
         this.#makeRecommendationTrackingPayload(recommendation),
       );
 
@@ -305,11 +303,19 @@ export class RecommendationsSlider extends LitElement {
       }
     };
 
+    const handleAddToCartClick = () => {
+      this.#trackEvent(
+        TRACKING_EVENTS.CART_CLICK,
+        this.#makeRecommendationTrackingPayload(recommendation),
+      );
+    };
+
     return html`
       <tfup-recommendation
         part="recommendation"
         .recommendation=${recommendation}
         @click=${handleRecommendationClick}
+        @add-to-cart=${handleAddToCartClick}
       ></tfup-recommendation>
     `;
   };

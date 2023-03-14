@@ -142,15 +142,15 @@ describe('RecommendationSlider', () => {
         seller="35up-test"
         language="de"
         base-product='{"title": "apple iphone 12"}'
-        data-collection=${false}
+        disable-tracking
       />
     `;
 
     describe.each([
-      [true, defaultTemplate],
-      [false, disabledTrackingTemplate],
-    ])('when data-collection is set to %s', (flag, template) => {
-      const titleVerb = `does${flag ? '' : ' not'}`;
+      [false, defaultTemplate],
+      [true, disabledTrackingTemplate],
+    ])('when disable-tracking is set to %s', (isTrackingDisabled, template) => {
+      const titleVerb = `does${isTrackingDisabled ? ' not' : ''}`;
 
       it(`${titleVerb} collect data on recommendation click`, async () => {
         const index = 3;
@@ -161,10 +161,14 @@ describe('RecommendationSlider', () => {
           'tfup-recommendation',
         )[index]!.click();
 
-        expect(sendTrackingEventMock).to.have.been.calledOnceWith(
-          TRACKING_EVENTS.RECOMMENDATION_CLICK,
-          {sku: reco.sku, vendorId: reco.vendor.id},
-        );
+        if (!isTrackingDisabled) {
+          expect(sendTrackingEventMock).to.have.been.calledOnceWith(
+            TRACKING_EVENTS.RECOMMENDATION_CLICK,
+            {sku: reco.sku, vendorId: reco.vendor.id},
+          );
+        } else {
+          expect(sendTrackingEventMock).to.have.not.been.called;
+        }
       });
 
       it(`${titleVerb} collect data on add-to-cart click`, async () => {
@@ -174,12 +178,16 @@ describe('RecommendationSlider', () => {
 
         container.shadowRoot!.querySelectorAll<HTMLButtonElement>(
           'tfup-recommendation button',
-        )[index]!.click();
+        )[index]!.dispatchEvent(new Event('click'));
 
-        expect(sendTrackingEventMock).to.have.been.calledOnceWith(
-          TRACKING_EVENTS.RECOMMENDATION_CLICK,
-          {sku: reco.sku, vendorId: reco.vendor.id},
-        );
+        if (!isTrackingDisabled) {
+          expect(sendTrackingEventMock).to.have.been.calledOnceWith(
+            TRACKING_EVENTS.CART_CLICK,
+            {sku: reco.sku, vendorId: reco.vendor.id},
+          );
+        } else {
+          expect(sendTrackingEventMock).to.have.not.been.called;
+        }
       });
 
       it(`${titleVerb} collect data on left-arrow click`, async () => {
@@ -189,8 +197,12 @@ describe('RecommendationSlider', () => {
           '.arrow',
         )[0]!.click();
 
-        expect(sendTrackingEventMock)
-          .to.have.been.calledOnceWith(TRACKING_EVENTS.ARROW_CLICK, 'left');
+        if (!isTrackingDisabled) {
+          expect(sendTrackingEventMock)
+            .to.have.been.calledOnceWith(TRACKING_EVENTS.ARROW_CLICK, 'left');
+        } else {
+          expect(sendTrackingEventMock).to.have.not.been.called;
+        }
       });
 
       it(`${titleVerb} collect data on right-arrow click`, async () => {
@@ -200,8 +212,12 @@ describe('RecommendationSlider', () => {
           '.arrow',
         )[1]!.click();
 
-        expect(sendTrackingEventMock)
-          .to.have.been.calledOnceWith(TRACKING_EVENTS.ARROW_CLICK, 'right');
+        if (!isTrackingDisabled) {
+          expect(sendTrackingEventMock)
+            .to.have.been.calledOnceWith(TRACKING_EVENTS.ARROW_CLICK, 'right');
+        } else {
+          expect(sendTrackingEventMock).to.have.not.been.called;
+        }
       });
 
       describe('when custom arrows are provided', () => {
@@ -210,7 +226,7 @@ describe('RecommendationSlider', () => {
             seller="35up-test"
             language="de"
             base-product='{"title": "apple iphone 12"}'
-            data-collection=${flag}
+            ?disable-tracking=${isTrackingDisabled}
           >
             <button slot="arrow-left"><</button>
             <button slot="arrow-right">></button>
@@ -224,8 +240,12 @@ describe('RecommendationSlider', () => {
             '[slot="arrow-left"]',
           )!.click();
 
-          expect(sendTrackingEventMock)
-            .to.have.been.calledOnceWith(TRACKING_EVENTS.ARROW_CLICK, 'left');
+          if (!isTrackingDisabled) {
+            expect(sendTrackingEventMock)
+              .to.have.been.calledOnceWith(TRACKING_EVENTS.ARROW_CLICK, 'left');
+          } else {
+            expect(sendTrackingEventMock).to.have.not.been.called;
+          }
         });
 
         it(`${titleVerb} collect data on custom right-arrow click`, async () => {
@@ -235,8 +255,12 @@ describe('RecommendationSlider', () => {
             '[slot="arrow-right"]',
           )!.click();
 
-          expect(sendTrackingEventMock)
-            .to.have.been.calledOnceWith(TRACKING_EVENTS.ARROW_CLICK, 'right');
+          if (!isTrackingDisabled) {
+            expect(sendTrackingEventMock).to.have.been
+              .calledOnceWith(TRACKING_EVENTS.ARROW_CLICK, 'right');
+          } else {
+            expect(sendTrackingEventMock).to.have.not.been.called;
+          }
         });
       });
     });
