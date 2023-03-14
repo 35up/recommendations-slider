@@ -30,7 +30,7 @@ export class RecommendationsSlider extends LitElement {
     baseProduct: {type: Object, attribute: 'base-product'},
     customer: {type: Object},
     limit: {type: Number},
-    dataCollection: {type: Boolean, attribute: 'data-collection'},
+    disableTracking: {type: Boolean, attribute: 'disable-tracking'},
     recommendations: {state: true},
   };
 
@@ -106,7 +106,7 @@ export class RecommendationsSlider extends LitElement {
   seller: string;
   session?: string;
   limit?: number;
-  dataCollection = true;
+  disableTracking = false;
   recommendations: RemoteData<ProductRecommendation[]> = makePending();
 
   #tfup: ThirtyFiveUp;
@@ -229,7 +229,7 @@ export class RecommendationsSlider extends LitElement {
   };
 
   #trackEvent(...args: Parameters<typeof sendTrackingEvent>): void {
-    if (this.dataCollection) {
+    if (!this.disableTracking) {
       sendTrackingEvent(...args);
     }
   }
