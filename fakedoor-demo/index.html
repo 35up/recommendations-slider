@@ -1,0 +1,81 @@
+<!doctype html>
+<head>
+  <script
+    type="module"
+    src="/node_modules/playground-elements/playground-ide.js"
+  ></script>
+  <link
+    rel="stylesheet"
+    href="/node_modules/playground-elements/themes/cobalt.css"
+  />
+  <title>35up Recommendation slider demo</title>
+  <style>
+    body {
+      --playground-highlight-color: var(--playground-code-attribute-color);
+      --playground-tab-bar-background: var(--playground-code-gutter-background);
+      --playground-tab-bar-foreground-color: #ffffff;
+      --playground-preview-toolbar-background: var(--playground-code-gutter-background);
+      --playground-preview-toolbar-foreground-color: #ffffff;
+      --playground-preview-width: 65%;
+
+      margin: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      box-sizing: border-box;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      justify-content: stretch;
+    }
+
+    #lhs {
+      flex: 1 1 33%;
+      width: 33%;
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+    }
+
+    #rhs {
+      flex: 2 2 66%;
+      border: none;
+    }
+
+    playground-tab-bar {
+      border-bottom: var(--playground-border, solid 1px #ddd);
+    }
+
+    playground-file-editor {
+      flex: 1 1 auto;
+    }
+
+  </style>
+</head>
+
+<body class="playground-theme-cobalt">
+<playground-project id="project"></playground-project>
+<div id="lhs">
+  <playground-tab-bar project="project" editor="editor">
+  </playground-tab-bar>
+
+  <playground-file-editor
+    project="project"
+    id="editor"
+    line-numbers
+    readonly
+    no-completion
+  >
+  </playground-file-editor>
+</div>
+
+<iframe id="rhs" src="src/index.html"></iframe>
+
+<script type="module">
+  import src from 'virtual:playground-files/src';
+
+  const ide = document.querySelector('#project');
+  ide.config = {
+    files: src,
+  };
+</script>
+</body>

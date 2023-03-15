@@ -1,0 +1,17 @@
+{
+  "name": "fakedoor-demo",
+  "version": "1.0.0",
+  "description": "Fake Door demo for Recommendations Slider",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@web/rollup-plugin-import-meta-assets": "^1.0.7",
+    "playground-elements": "^0.17.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
