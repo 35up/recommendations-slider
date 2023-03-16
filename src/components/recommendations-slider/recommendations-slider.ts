@@ -16,6 +16,7 @@ import {
   initialise,
 } from '@35up/js-sdk-browser';
 import { recommendationCss } from './recommendation';
+import { sendTrackingEvent, TRACKING_EVENTS } from '../../services/tracking';
 
 
 const THRESHOLD = -20;
@@ -29,6 +30,7 @@ export class RecommendationsSlider extends LitElement {
     baseProduct: {type: Object, attribute: 'base-product'},
     customer: {type: Object},
     limit: {type: Number},
+    disableTracking: {type: Boolean, attribute: 'disable-tracking'},
     recommendations: {state: true},
   };
 
@@ -104,6 +106,7 @@ export class RecommendationsSlider extends LitElement {
   seller: string;
   session?: string;
   limit?: number;
+  disableTracking = false;
   recommendations: RemoteData<ProductRecommendation[]> = makePending();
 
   #tfup: ThirtyFiveUp;
@@ -201,29 +204,39 @@ export class RecommendationsSlider extends LitElement {
   }
 
   #scrollToNext = (): void => {
-    const child = this.#getFistVisibleElement();
+    this.#trackEvent(TRACKING_EVENTS.ARROW_CLICK, 'right');
 
+    const child = this.#getFistVisibleElement();
     if (!child) return;
 
     const nextElement = this.#getNextElement(child);
-
     if (!nextElement) return;
 
     this.#scrollTo(nextElement);
   };
 
   #scrollToPrevious = (): void => {
-    const child = this.#getFistVisibleElement();
+    this.#trackEvent(TRACKING_EVENTS.ARROW_CLICK, 'left');
 
+    const child = this.#getFistVisibleElement();
     if (!child) return;
 
     const previousElement = this.#getPreviousElement(child);
-
     if (!previousElement) return;
 
 
     this.#scrollTo(previousElement);
   };
+
+  #trackEvent(...args: Parameters<typeof sendTrackingEvent>): void {
+    if (!this.disableTracking) {
+      sendTrackingEvent(...args);
+    }
+  }
+
+  #makeRecommendationTrackingPayload(recommendation: ProductRecommendation) {
+    return {sku: recommendation.sku, vendorId: recommendation.vendor.id};
+  }
 
   private renderSlider(slides: TemplateResult): TemplateResult {
     return html`
@@ -275,6 +288,11 @@ export class RecommendationsSlider extends LitElement {
     recommendation: ProductRecommendation,
   ): TemplateResult => {
     const handleRecommendationClick = (e: Event) => {
+      this.#trackEvent(
+        TRACKING_EVENTS.RECOMMENDATION_CLICK,
+        this.#makeRecommendationTrackingPayload(recommendation),
+      );
+
       if (!e.defaultPrevented) {
         this.dispatchEvent(
           new CustomEvent(
@@ -285,12 +303,20 @@ export class RecommendationsSlider extends LitElement {
       }
     };
 
+    const handleAddToCartClick = () => {
+      this.#trackEvent(
+        TRACKING_EVENTS.CART_CLICK,
+        this.#makeRecommendationTrackingPayload(recommendation),
+      );
+    };
+
     return html`
       <tfup-recommendation
         part="recommendation"
         .recommendation=${recommendation}
-        @click=${handleRecommendationClick}>
-      </tfup-recommendation>
+        @click=${handleRecommendationClick}
+        @add-to-cart=${handleAddToCartClick}
+      ></tfup-recommendation>
     `;
   };
 
