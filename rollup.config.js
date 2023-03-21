@@ -18,6 +18,11 @@ module.exports = [
       entryFileNames: path.basename(pkg.module),
       format: 'es',
       sourcemap: true,
+      paths: moduleId => (
+        /lit\/.+(?!\.js)/.test(moduleId)
+          ? `${moduleId}.js`
+          : moduleId
+      ),
     },
     external,
     plugins: [nodeResolve({browser: true}), typescript()],
