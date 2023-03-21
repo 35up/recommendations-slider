@@ -16,6 +16,7 @@ import {
   initialise,
 } from '@35up/js-sdk-browser';
 import { recommendationCss } from './recommendation';
+import { arrow } from './arrow';
 import { sendTrackingEvent, TRACKING_EVENTS } from '../../services/tracking';
 
 
@@ -90,13 +91,22 @@ export class RecommendationsSlider extends LitElement {
 
     .slider .arrow {
       display: block;
+      flex: 0 0 var(--arrow-size);
       background: 0;
       font-size: var(--arrow-size);
-      line-height: 1;
       height: var(--arrow-size);
       border: none;
-      padding: 0 calc(var(--arrow-size) / 2);
     }
+
+    .slider .arrow svg {
+      width: 1em;
+      height: 1em;
+    }
+
+    .slider .arrow.right svg {
+      transform: rotate(0.5turn);
+    }
+
   `];
 
   baseProduct: BaseProduct;
@@ -111,11 +121,6 @@ export class RecommendationsSlider extends LitElement {
 
   #tfup: ThirtyFiveUp;
 
-  constructor() {
-    super();
-    this.setAttribute('role', 'list');
-  }
-
   get sliderTrack(): HTMLElement | null {
     return this.renderRoot.querySelector('.slider-track');
   }
@@ -123,6 +128,7 @@ export class RecommendationsSlider extends LitElement {
   connectedCallback() {
     super.connectedCallback();
 
+    this.setAttribute('role', 'list');
     this.#tfup = initialise({
       seller: this.seller,
       session: this.session,
@@ -262,7 +268,7 @@ export class RecommendationsSlider extends LitElement {
           aria-hidden="true"
           part="arrow"
         >
-          &lsaquo;
+          ${arrow}
         </button>
       `;
   }
@@ -274,12 +280,12 @@ export class RecommendationsSlider extends LitElement {
       ? html`<slot name="arrow-right" @click=${this.#scrollToNext}></slot>`
       : html`
         <button
-          class="arrow"
+          class="arrow right"
           @click=${this.#scrollToNext}
           aria-hidden="true"
           part="arrow"
         >
-          &rsaquo;
+          ${arrow}
         </button>
       `;
   }
@@ -313,6 +319,7 @@ export class RecommendationsSlider extends LitElement {
     return html`
       <tfup-recommendation
         part="recommendation"
+        exportparts="title,price,button"
         .recommendation=${recommendation}
         @click=${handleRecommendationClick}
         @add-to-cart=${handleAddToCartClick}
