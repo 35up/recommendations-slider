@@ -60,6 +60,7 @@ function playgroundFilesPlugin() {
         const module = moduleGraph.getModuleById(updatedModule);
         if (module) {
           moduleGraph.invalidateModule(module);
+          // eslint-disable-next-line no-console
           console.log(
             '[playground-files plugin HMR]: %o was updated',
             updatedModule,
@@ -114,7 +115,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         wrapper: path.resolve(__dirname, 'index.html'),
-        demo: path.resolve(__dirname, 'src/index.html'),
+        demo: path.resolve(__dirname, 'demo/index.html'),
       },
       plugins: [importMetaAssets()],
     },

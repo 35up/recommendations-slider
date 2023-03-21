@@ -7,11 +7,11 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
+    "@35up/recommendations-slider": "file:..",
     "@web/rollup-plugin-import-meta-assets": "^1.0.7",
+    "bulma": "^0.9.4",
     "playground-elements": "^0.17.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "sass": "^1.59.3",
+    "vite": "^4.2.1"
   }
 }

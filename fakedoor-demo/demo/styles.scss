@@ -1,0 +1,42 @@
+$blue: cornflowerblue;
+$primary: $blue;
+
+@import 'bulma/bulma.sass';
+
+body {
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+tfup-recommendations-slider {
+  width: 100%;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+tfup-recommendations-slider::part(price) {
+  font-size: 1.3rem;
+  text-align: end;
+}
+
+tfup-recommendations-slider::part(button) {
+  background: $primary;
+  color: white;
+  border: none;
+  border-radius: 0.3rem;
+  padding: 0.5rem;
+}
+
+tfup-recommendations-slider::part(arrow) {
+  background: $primary;
+  color: white;
+  border-radius: 10000px; /* round */
+  padding: 0;
+  width: var(--arrow-size);
+  font-size: calc(var(--arrow-size) / 2);
+  box-sizing: border-box;
+  margin: 1rem;
+}

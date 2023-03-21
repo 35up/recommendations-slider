@@ -29,15 +29,16 @@
     }
 
     #lhs {
-      flex: 1 1 33%;
-      width: 33%;
+      flex: 1 1 40%;
+      width: 40%;
+      min-width: 400px;
       display: flex;
       flex-direction: column;
       justify-content: stretch;
     }
 
     #rhs {
-      flex: 2 2 66%;
+      flex: 2 2 60%;
       border: none;
     }
 
@@ -68,10 +69,10 @@
   </playground-file-editor>
 </div>
 
-<iframe id="rhs" src="src/index.html"></iframe>
+<iframe id="rhs" src="demo/index.html"></iframe>
 
 <script type="module">
-  import src from 'virtual:playground-files/src';
+  import src from 'virtual:playground-files/demo';
 
   const ide = document.querySelector('#project');
   ide.config = {
