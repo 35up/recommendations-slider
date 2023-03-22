@@ -72,11 +72,14 @@
 <iframe id="rhs" src="demo/index.html"></iframe>
 
 <script type="module">
-  import src from 'virtual:playground-files/demo';
+  import files from 'virtual:playground-files/demo';
 
   const ide = document.querySelector('#project');
-  ide.config = {
-    files: src,
-  };
+  const { ['index.html']: index, ...otherFiles} = files;
+
+  ide.config = {files: {
+      'index.html': index,
+      ...otherFiles,
+    }};
 </script>
 </body>
