@@ -40,7 +40,7 @@ test-unit: node_modules
 
 .PHONY: test-components
 test-components: node_modules
-	npm run cy:run
+	npm run test-components
 
 .PHONY: test
 test: test-unit test-components

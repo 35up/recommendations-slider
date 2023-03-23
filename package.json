@@ -12,6 +12,7 @@
     "prepublishOnly": "make ci",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
+    "test-components": "start-test storybook 6006 cy:run",
     "cy:run": "cypress run --e2e",
     "cy:open": "cypress open --browser chrome --e2e"
   },
@@ -69,6 +70,7 @@
     "rollup-plugin-dts": "^5.0.0",
     "sinon": "^14.0.2",
     "sinon-chai": "^3.7.0",
+    "start-server-and-test": "^2.0.0",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.3",
     "vite": "^4.0.4"
