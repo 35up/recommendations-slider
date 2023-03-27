@@ -1,4 +1,6 @@
 const { mergeConfig } = require('vite');
+const { viteStaticCopy } = require('vite-plugin-static-copy');
+const path = require('path');
 
 
 module.exports = {
@@ -28,6 +30,16 @@ module.exports = {
           { find: /^lit\/([\w-/]+)$/, replacement: 'lit/$1.js' },
         ],
       },
+      plugins: [
+        viteStaticCopy({
+          targets: [
+            {
+              src: path.resolve(__dirname, './logo-colorful.svg'),
+              dest: path.resolve(__dirname, '../storybook-static'),
+            }
+          ]
+        })
+      ]
     });
   },
 };

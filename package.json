@@ -75,7 +75,8 @@
     "sinon-chai": "^3.7.0",
     "ts-jest": "^29.0.3",
     "typescript": "^4.9.3",
-    "vite": "^4.0.4"
+    "vite": "^4.0.4",
+    "vite-plugin-static-copy": "^0.13.1"
   },
   "module": "build/35up-recommentations-slider.esm.js",
   "types": "src"
