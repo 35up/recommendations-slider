@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "@35up/eslint-config-35up-base": "^4.0.6",
+    "@35up/frontend-scripts": "^1.0.1",
     "@35up/tslib-test-utils-wc": "^2.0.0",
     "@babel/core": "^7.20.5",
     "@mdx-js/react": "^1.6.22",
