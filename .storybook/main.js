@@ -15,6 +15,7 @@ module.exports = {
     builder: '@storybook/builder-vite',
   },
   async viteFinal(config) {
+    config.optimizeDeps = config.optimizeDeps || {};
     config.optimizeDeps.include = [
       ...(config.optimizeDeps?.include ?? []),
       '@storybook/web-components',
