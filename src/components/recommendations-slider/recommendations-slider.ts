@@ -96,6 +96,7 @@ export class RecommendationsSlider extends LitElement {
       font-size: var(--arrow-size);
       height: var(--arrow-size);
       border: none;
+      cursor: pointer;
     }
 
     .slider .arrow svg {
