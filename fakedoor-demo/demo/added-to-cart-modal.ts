@@ -1,5 +1,5 @@
 import type { ProductRecommendation } from '@35up/recommendations-slider';
-import { createRemove } from './utils';
+import { createRemoveContentFunction } from './utils';
 
 
 function createAddedToCartModal(
@@ -13,7 +13,7 @@ function createAddedToCartModal(
   $('.product-name').textContent = product.name;
   $('.image img').setAttribute('src', product.images.thumbnail);
 
-  const remove = createRemove(dom);
+  const remove = createRemoveContentFunction(dom);
   for (const button of dom.querySelectorAll('button')) {
     button.addEventListener('click', remove);
   }

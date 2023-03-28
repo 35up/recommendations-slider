@@ -1,5 +1,5 @@
 import type { ProductRecommendation } from '@35up/recommendations-slider';
-import { createRemove } from './utils';
+import { createRemoveContentFunction } from './utils';
 import { openAddedToCartModal } from './added-to-cart-modal';
 
 
@@ -41,11 +41,11 @@ function createProductDetailsModal(
   );
   renderCategories(product.categories, dom);
 
-  const remove = createRemove(dom);
-  $('.delete').addEventListener('click', remove);
-  $('.close-button').addEventListener('click', remove);
+  const removeContent = createRemoveContentFunction(dom);
+  $('.delete').addEventListener('click', removeContent);
+  $('.close-button').addEventListener('click', removeContent);
   $('.add-to-cart').addEventListener('click', () => {
-    remove();
+    removeContent();
     openAddedToCartModal(product);
   });
 
