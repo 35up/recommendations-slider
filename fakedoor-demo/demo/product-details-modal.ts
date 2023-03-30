@@ -42,7 +42,7 @@ function createProductDetailsModal(
   renderCategories(product.categories, dom);
 
   const removeContent = createRemoveContentFunction(dom);
-  $('.delete').addEventListener('click', removeContent);
+  $('.modal-close').addEventListener('click', removeContent);
   $('.close-button').addEventListener('click', removeContent);
   $('.add-to-cart').addEventListener('click', () => {
     removeContent();
