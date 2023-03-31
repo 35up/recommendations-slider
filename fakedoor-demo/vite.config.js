@@ -111,6 +111,7 @@ function playgroundFilesPlugin() {
 
 export default defineConfig({
   plugins: [playgroundFilesPlugin()],
+  server: {port: 3000},
   build: {
     rollupOptions: {
       input: {
