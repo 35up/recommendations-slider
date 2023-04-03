@@ -97,14 +97,15 @@ export const WithFontSize: StoryObj = {
 export const FullyCustomized: Story<TProps> = ({ baseProduct }) => {
   const wrapper = document.createElement('div');
   wrapper.attachShadow({mode: 'open'});
-  const recoSliderStyle = styleMap({
-    '--recommendation-height': '30rem',
-    'font-size': '14px',
-    color: '#333',
-  });
   render(
     html`
       <style>
+        tfup-recommendations-slider {
+          --recommendation-height: 30rem;
+          font-size: 14px;
+          color: #333;
+        }
+
         tfup-recommendations-slider::part(recommendation) {
           border-radius: 10px;
           background: #eaf1fb;
@@ -150,7 +151,6 @@ export const FullyCustomized: Story<TProps> = ({ baseProduct }) => {
       <tfup-recommendations-slider
         base-product=${JSON.stringify(baseProduct)}
         seller="35up-test"
-        style=${recoSliderStyle}
       >
         <button slot="arrow-left"><</button>
         <button slot="arrow-right">></button>

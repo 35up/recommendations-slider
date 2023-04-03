@@ -14,7 +14,7 @@ export const recommendationCss = css`
     align-items: start;
     grid-template:
       "image" minmax(5em, 25fr)
-      "title" minmax(2.5em, 5fr)
+      "title" minmax(2.5em, 7fr)
       "price" auto
       "actions" auto
       / min(100%, 15em);
