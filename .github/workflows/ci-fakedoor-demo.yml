@@ -1,26 +1,26 @@
-name: ci-slider
+name: ci-fakedoor-demo
 
 on:
   push:
     branches: [ master ]
     paths:
-      - packages/slider/**
-      - ./.github/workflows/ci-slider.yml
+      - packages/fakedoor-demo/**
+      - ./.github/workflows/ci-fakedoor-demo.yml
 
   pull_request:
     branches: [ master ]
     paths:
-      - packages/slider/**
-      - ./.github/workflows/ci-slider.yml
+      - packages/fakedoor-demo/**
+      - ./.github/workflows/ci-fakedoor-demo.yml
 
 
 jobs:
-  ci-slider:
+  ci-fakedoor-demo:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     defaults:
       run:
-        working-directory: "./packages/slider"
+        working-directory: "./packages/fakedoor-demo"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -28,21 +28,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14
-      - name: Configure GitHub NPM Token
-        run: npm config set '//npm.pkg.github.com/:_authToken' "${{ secrets.NPM_TOKEN }}"
       - name: Install
         run: npm i
       - name: Build
         run: npm run build
-      - name: Lint
-        run: npm run lint
-      - name: Test-unit
-        run: npm run test
-      - name: Test-components
-        run: npm run test-components
 
   slack:
-    needs: ci-slider
+    needs: ci-fakedoor-demo
     if: failure()
     runs-on: ubuntu-latest
     timeout-minutes: 3
@@ -61,4 +53,4 @@ jobs:
         with:
           # gh-reports channel
           channel-id: C03TQL71JHY
-          job-status: ${{ needs.ci-slider.result }}
+          job-status: ${{ needs.ci-fakedoor-demo.result }}
