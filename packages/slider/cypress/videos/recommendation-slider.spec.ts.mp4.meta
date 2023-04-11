@@ -1,0 +1,11 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=9415
+END=16958
+title=recommendation-slider can slide right
+[CHAPTER]
+TIMEBASE=1/1000
+START=13838
+END=24613
+title=recommendation-slider can slide left

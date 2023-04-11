@@ -7,9 +7,9 @@
   "include": [
     "cypress",
     "**/*.test.ts",
-    "src/setup-tests.ts",
+    "**/src/setup-tests.ts",
     "**/__mocks__/**/*",
     "cypress.config.ts",
-    "src/mock-data/**/*"
+    "**/src/mock-data/**/*"
   ]
 }
