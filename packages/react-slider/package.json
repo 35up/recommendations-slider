@@ -1,0 +1,29 @@
+{
+  "name": "@35up/react-recommendations-slider",
+  "version": "0.0.1",
+  "description": "React component library to include 35up Recommendations in your store",
+  "scripts": {
+    "start": "storybook dev -p 6006",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@35up/recommendations-slider": "file:../slider"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^7.0.2",
+    "@storybook/addon-essentials": "^7.0.2",
+    "@storybook/addon-links": "^7.0.2",
+    "@storybook/react": "^7.0.2",
+    "@storybook/react-vite": "^7.0.2",
+    "@vitejs/plugin-react": "^3.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.0.2",
+    "typescript": "^5.0.4",
+    "vite": "^4.2.1"
+  }
+}

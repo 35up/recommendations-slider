@@ -1,7 +1,7 @@
 {
   "name": "@35up/recommendations-slider",
   "version": "0.0.1",
-  "description": "Component library to include 35up Recommendations in yur store",
+  "description": "Component library to include 35up Recommendations in your store",
   "scripts": {
     "start": "npm run storybook",
     "build": "rollup --config",
