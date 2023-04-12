@@ -4,7 +4,8 @@
   "description": "React component library to include 35up Recommendations in your store",
   "scripts": {
     "start": "storybook dev -p 6006",
-    "build": "vite build"
+    "build": "vite build",
+    "test": "vitest"
   },
   "dependencies": {
     "@35up/recommendations-slider": "file:../slider"
@@ -19,11 +20,15 @@
     "@storybook/addon-links": "^7.0.2",
     "@storybook/react": "^7.0.2",
     "@storybook/react-vite": "^7.0.2",
+    "@testing-library/dom": "^9.2.0",
+    "@testing-library/react": "^14.0.0",
     "@vitejs/plugin-react": "^3.1.0",
+    "jsdom": "^21.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.0.2",
     "typescript": "^5.0.4",
-    "vite": "^4.2.1"
+    "vite": "^4.2.1",
+    "vitest": "^0.30.1"
   }
 }
