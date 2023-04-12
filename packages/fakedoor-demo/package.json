@@ -7,7 +7,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@35up/recommendations-slider": "file:../slider",
+    "@35up/recommendations-slider": "^0.0.1",
     "@web/rollup-plugin-import-meta-assets": "^1.0.7",
     "bulma": "^0.9.4",
     "playground-elements": "^0.17.0",
