@@ -60,7 +60,7 @@ describe('reactify', () => {
     expect(span).not.toHaveProperty('obj');
   });
 
-  it('sets the prop as a property event if it is a string when present in the propMap', () => {
+  it('sets the prop as a property even if it is a string when present in the propMap', () => {
     type TSpanProps = {prop: string};
     const Component = reactify<TSpanProps>('span', {propMap: {prop: 'prop'}});
 

@@ -1,6 +1,4 @@
-export {
-  RecommendationsSlider,
-} from './components/slider';
+export { RecommendationsSlider } from './components/slider';
 export type {
   ProductRecommendation,
   BaseProduct,
