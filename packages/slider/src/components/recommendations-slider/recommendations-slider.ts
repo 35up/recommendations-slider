@@ -3,12 +3,6 @@ import { repeat } from 'lit/directives/repeat';
 import { choose } from 'lit/directives/choose';
 import { map } from 'lit/directives/map';
 import {
-  makePending,
-  STATUS,
-  arrayRange,
-  type RemoteData,
-} from '@35up/tslib-utils';
-import {
   type BaseProduct,
   type Customer,
   type ThirtyFiveUp,
@@ -21,6 +15,7 @@ import { sendTrackingEvent, TRACKING_EVENTS } from '../../services/tracking';
 
 
 const THRESHOLD = -20;
+type TStatus = 'pending' | 'success' | 'error';
 
 export class RecommendationsSlider extends LitElement {
   static properties = {
@@ -33,6 +28,7 @@ export class RecommendationsSlider extends LitElement {
     limit: {type: Number},
     disableTracking: {type: Boolean, attribute: 'disable-tracking'},
     recommendations: {state: true},
+    error: {state: true},
   };
 
   static styles = [recommendationCss, css`
@@ -118,7 +114,7 @@ export class RecommendationsSlider extends LitElement {
   session?: string;
   limit?: number;
   disableTracking = false;
-  recommendations: RemoteData<ProductRecommendation[]> = makePending();
+  recommendations: [TStatus, ProductRecommendation[]] = ['pending', []];
 
   #tfup: ThirtyFiveUp;
 
@@ -145,14 +141,21 @@ export class RecommendationsSlider extends LitElement {
       && changedProperties.has('recommendations')
     ) return;
 
-    this.recommendations = await this.#tfup.getProductRecommendations({
-      baseProduct: this.baseProduct,
-      customer: this.customer,
-      country: this.country,
-      lang: this.language,
-      limit: this.limit,
-      session: this.session,
-    });
+    try {
+      this.recommendations = [
+        'success',
+        await this.#tfup.getProductRecommendations({
+          baseProduct: this.baseProduct,
+          customer: this.customer,
+          country: this.country,
+          lang: this.language,
+          limit: this.limit,
+          session: this.session,
+        }),
+      ];
+    } catch {
+      this.recommendations = ['error', []];
+    }
   }
 
   #isSlideVisible(slide: HTMLElement): boolean {
@@ -330,18 +333,18 @@ export class RecommendationsSlider extends LitElement {
 
   private renderShimmers(): TemplateResult {
     return this.renderSlider(html`${map(
-      arrayRange(0, this.limit ?? 10),
+      new Array(this.limit ?? 10).fill(0),
       () => html`<div class="shimmer" />`,
     )}`);
   }
 
   protected render(): TemplateResult {
-    return html`${choose(this.recommendations.status, [
-      [STATUS.PENDING, () => this.renderShimmers()],
-      [STATUS.FAIL, () => html`<div>Failed to load recommendations.</div>`],
-      [STATUS.SUCCESS, () => this.renderSlider(html`${repeat(
+    return html`${choose(this.recommendations[0], [
+      ['pending', () => this.renderShimmers()],
+      ['error', () => html`<div>Failed to load recommendations.</div>`],
+      ['success', () => this.renderSlider(html`${repeat(
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        this.recommendations.data!,
+        this.recommendations[1],
         this.renderRecommendation,
       )}`)],
     ])}

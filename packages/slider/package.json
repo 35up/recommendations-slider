@@ -32,8 +32,7 @@
   },
   "homepage": "https://github.com/35up/recommendations-slider/packages/slider#readme",
   "dependencies": {
-    "@35up/js-sdk-browser": "^0.6.0",
-    "@35up/tslib-utils": "^2.3.2",
+    "@35up/js-sdk-browser": "^1.0.0",
     "lit": "^2.4.1",
     "tslib": "^2.4.1"
   },

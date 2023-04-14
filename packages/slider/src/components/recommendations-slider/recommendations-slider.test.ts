@@ -4,7 +4,6 @@ import { html } from 'lit';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { render, waitForFrame } from '@35up/tslib-test-utils-wc';
-import { makeSuccess } from '@35up/tslib-utils';
 import { recommendations } from '../../mock-data';
 import { initialise, sdkInstance } from './__mocks__/@35up/js-sdk-browser';
 import { sendTrackingEvent, TRACKING_EVENTS } from '../../services/tracking';
@@ -19,8 +18,7 @@ describe('RecommendationSlider', () => {
   beforeEach(() => {
     initialise.resetHistory();
     sdkInstance.getProductRecommendations.reset();
-    sdkInstance.getProductRecommendations
-      .resolves(makeSuccess(recommendations));
+    sdkInstance.getProductRecommendations.resolves(recommendations);
     sendTrackingEventMock.resetHistory();
     sendTrackingEventMock.resolves();
   });
@@ -51,7 +49,7 @@ describe('RecommendationSlider', () => {
     sdkInstance.getProductRecommendations
       .callsFake(async () => {
         await waitForFrame();
-        return (makeSuccess(recommendations));
+        return recommendations;
       });
     const container = await render(html`
       <tfup-recommendations-slider

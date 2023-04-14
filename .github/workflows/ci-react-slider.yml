@@ -27,8 +27,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 14
-      - name: Configure GitHub NPM Token
-        run: npm config set '//npm.pkg.github.com/:_authToken' "${{ secrets.NPM_TOKEN }}"
       - name: Bootstrap
         run: cd ../.. && npm i && npm run bootstrap
       - name: Build slider
