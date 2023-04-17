@@ -14,5 +14,4 @@ npm-debug.log
 
 package-lock.json
 
-.npmrc
-/cypress/videos/
+**/cypress/videos/

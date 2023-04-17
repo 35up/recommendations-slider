@@ -1,0 +1,63 @@
+name: ci-slider
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - packages/slider/**
+      - ./.github/workflows/ci-slider.yml
+
+  pull_request:
+    branches: [ master ]
+    paths:
+      - packages/slider/**
+      - ./.github/workflows/ci-slider.yml
+
+jobs:
+  ci-slider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: "./packages/slider"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Configure GitHub NPM Token
+        run: npm config set '//npm.pkg.github.com/:_authToken' "${{ secrets.NPM_TOKEN }}"
+      - name: Install
+        run: npm i
+      - name: Build
+        run: npm run build
+      - name: Lint
+        run: npm run lint
+      - name: Test-unit
+        run: npm run test
+      - name: Test-components
+        run: npm run test-components
+
+  slack:
+    needs: ci-slider
+    if: failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      SLACK_BOT_TOKEN: ${{ secrets.ACTIONS_SLACK_BOT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: 35up/github-action-slack-notify
+          ref: v4
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
+          path: .github/actions/slack-notify
+      - name: Trigger Slack Notification
+        uses: ./.github/actions/slack-notify
+        with:
+          # gh-reports channel
+          channel-id: C03TQL71JHY
+          job-status: ${{ needs.ci-slider.result }}
