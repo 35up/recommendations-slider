@@ -13,7 +13,6 @@ on:
       - packages/fakedoor-demo/**
       - ./.github/workflows/ci-fakedoor-demo.yml
 
-
 jobs:
   ci-fakedoor-demo:
     runs-on: ubuntu-latest

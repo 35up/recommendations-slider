@@ -13,7 +13,6 @@ on:
       - packages/slider/**
       - ./.github/workflows/ci-slider.yml
 
-
 jobs:
   ci-slider:
     runs-on: ubuntu-latest
