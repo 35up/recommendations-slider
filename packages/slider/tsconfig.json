@@ -4,10 +4,11 @@
     "cypress",
     "node_modules",
     "**/*.test.ts",
-    "src/setup-tests.ts",
+    "**/src/setup-tests.ts",
     "**/__mocks__/**/*",
     "cypress.config.ts",
     "build",
-    "src/mock-data"
+    "**/src/mock-data",
+    "fakedoor-demo/demo"
   ]
 }

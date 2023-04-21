@@ -6,6 +6,7 @@ module.exports = {
   moduleNameMapper: {
     '^lit/directives/(\\w+)$': 'lit/directives/$1.js',
   },
+  testPathIgnorePatterns: ['/node_modules/', '/cypress/'],
   coverageDirectory: './coverage',
   coverageThreshold: {
     global: {

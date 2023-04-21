@@ -1,0 +1,59 @@
+name: ci-react-slider
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - packages/react-slider/**
+      - ./.github/workflows/ci-react-slider.yml
+
+  pull_request:
+    branches: [ master ]
+    paths:
+      - packages/react-slider/**
+      - ./.github/workflows/ci-react-slider.yml
+
+jobs:
+  ci-react-slider:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: "./packages/react-slider"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+      - name: Bootstrap
+        run: cd ../.. && npm i && npm run bootstrap
+      - name: Build slider
+        run: cd ../slider && npm run build
+      - name: Build
+        run: npm run build
+      - name: Test-unit
+        run: npm run test
+
+  slack:
+    needs: ci-react-slider
+    if: failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    env:
+      SLACK_BOT_TOKEN: ${{ secrets.ACTIONS_SLACK_BOT_ID }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          repository: 35up/github-action-slack-notify
+          ref: v4
+          token: ${{ secrets.GH_ACCESS_TOKEN }}
+          path: .github/actions/slack-notify
+      - name: Trigger Slack Notification
+        uses: ./.github/actions/slack-notify
+        with:
+          # gh-reports channel
+          channel-id: C03TQL71JHY
+          job-status: ${{ needs.ci-react-slider.result }}
