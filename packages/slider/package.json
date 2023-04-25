@@ -17,8 +17,7 @@
     "cy:run": "cypress run --e2e",
     "cy:open": "cypress open --browser chrome --e2e",
     "ci": "npm run clean && run-p lint build test",
-    "rebuild-storybook": "rm -rf storybook-static && build-storybook",
-    "deploy-storybook": "npm run rebuild-storybook && deploy-to-aws --path storybook-static --project recos-slider-storybook"
+    "rebuild-storybook": "rm -rf storybook-static && build-storybook"
   },
   "repository": {
     "type": "git",
