@@ -28,6 +28,8 @@ export default {
     docs: {
       page: mdx,
     },
+    viewMode: 'docs',
+    previewTabs: { 'storybook/docs/panel': { index: -1 } },
   },
   argTypes: {
     baseProduct: {control: 'object'},
