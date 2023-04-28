@@ -68,20 +68,6 @@ export const CustomStyles: Story = {
           .custom-slider::part(arrow):hover {
             color: #b4cff7;
           }
-
-          button {
-            margin: 0 10px;
-            background: transparent;
-            color: #d3e3fd;
-            border: 1px solid #d3e3fd;
-            border-radius: 999px;
-            cursor: pointer;
-          }
-
-          button:hover {
-            color: #b4cff7;
-            border: 1px solid #b4cff7;
-          }
         `}</Style>
         <RecommendationsSlider {...props} className="custom-slider">
           <button slot="arrow-left">{'<'}</button>
