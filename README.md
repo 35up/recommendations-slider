@@ -13,6 +13,42 @@ Just put it in your web shop and connect.
 Example look:
 ![example.png](example.png)
 
+## Input props
+Here is the list of input props for the component:
+
+
+| Prop            | Description                                                                    | Type    | Required |
+|-----------------|--------------------------------------------------------------------------------|---------|----------|
+| language        | Language of output: `de`, `en`, etc.                                           | String  | No       |
+| country         | Operational country: `de`, `at`, etc.                                          | String  | No       |
+| seller          | The seller id                                                                  | String  | Yes      |
+| session         | Session id. Will be auto-generated when not provided                           | String  | No       |
+| baseProduct     | A product for which to get recommendations                                     | Object  | Yes      |
+| customer        | Information about customer who is buying the product                           | Object  | No       |
+| limit           | Number of recommendations to get                                               | Number  | No       |
+| disableTracking | disable tracking user of actions with the slider. By default will be collected | Boolean | No       |
+
+Base product object structure:
+```
+title: string
+price: number (optional)
+value: number (optional)
+color: string (optional)
+category: string (optional)
+tag: boolean | string | number | object (optional),
+```
+You can also pass any other arbitrary property within base product
+
+Customer object structure:
+```
+age: number or [number, number] as range (optional)
+gender: string (optional)
+postcode: number (optional)
+city: string (optional)
+country: string (optional)
+```
+You can also pass any other arbitrary property within customer
+
 ## Customize styles
 
 The components is implemented using shadow DOM with all styles isolated,
