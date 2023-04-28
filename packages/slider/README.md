@@ -16,6 +16,11 @@ function handleAddToCartClick(e: CustomEvent): void {
   // Add product to your shopping cart
 }
 
+function handleProductClick(e: CustomEvent): void {
+  const product = e.detail;
+  // For example, show a dialog with details
+}
+
 const baseProduct = {
   title: 'Apple iPhone 12 Pro - Pacific blue',
 };
@@ -25,6 +30,7 @@ const baseProduct = {
 <tfup-recommendations-slider
   base-product=${baseProduct}
   seller="your-seller-id"
+  @recommendation-click=${handleProductClick}
   @add-to-cart=${handleAddToCartClick}
 ></tfup-recommendations-slider>
 ```
