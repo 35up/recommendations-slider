@@ -50,7 +50,7 @@ You can also pass any other arbitrary property within customer
 ## Customize styles
 
 The components are implemented using shadow DOM with all styles isolated,
-so there are 3 possibilities for styles customization:
+so there are 4 possibilities for styles customization:
 1. Customize host element (`tfup-recommendations-slider`) by directly applying
    styles to it.
 2. Customize some specific properties using custom CSS properties. Here
@@ -65,6 +65,8 @@ so there are 3 possibilities for styles customization:
    recommendations
 3. Use shadow `::part` pseudo-element to customize internal elements. The 
    available parts are: `recommendation`, `button`, `price` and `arrow`
+4. Replace arrows with your own elements using slots: `arrow-left` and 
+`arrow-right`
 
 Example:
 ```
@@ -102,5 +104,17 @@ Example:
   tfup-recommendations-slider::part(arrow):hover {
     color: #b4cff7;
   }
+  
+  .custom-arrow {
+    background: transparent;
+    color: #d3e3fd;
+  }
 </style>
+
+<tfup-recommendations-slider
+ ...
+>
+  <button class="custom-arrow" slot="arrow-left"><</button>
+  <button class="custom-arrow" slot="arrow-right">></button>
+</tfup-recommendations-slider>
 ```
