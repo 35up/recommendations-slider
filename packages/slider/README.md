@@ -38,3 +38,8 @@ slider.addEventListener('add-to-cart', handleAddToCartClick);
 // Insert the slider in your page
 document.getElementById('place-for-slider').appendChild(slider);
 ```
+
+Note: this is vanilla js example, for your framework or ui library use 
+corresponding syntax. If you use react, consider our
+[React wrapper](../react-slider/README.md)
+
