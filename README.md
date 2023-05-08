@@ -14,7 +14,6 @@ Example look:
 ## Input props
 Here is the list of input props for the component:
 
-
 | Prop            | Description                                                                    | Type    | Required |
 |-----------------|--------------------------------------------------------------------------------|---------|----------|
 | language        | Language of output: `de`, `en`, etc.                                           | String  | No       |

@@ -5,7 +5,7 @@ Web-component for 35up Recommendations Slider.
 Usage:
 1. Install the package:
 ```
-  npm i -S @35up/recommendations-slider
+npm i -S @35up/recommendations-slider
 ```
 2. Put in your page
 ```
@@ -25,16 +25,16 @@ const baseProduct = {
   title: 'Apple iPhone 12 Pro - Pacific blue',
 };
 
-// in render method
+const slider = document.createElement('tfup-recommendations-slider');
 
-<tfup-recommendations-slider
-  base-product=${baseProduct}
-  seller="your-seller-id"
-  @recommendation-click=${handleProductClick}
-  @add-to-cart=${handleAddToCartClick}
-></tfup-recommendations-slider>
+// Set properties
+slider.seller = "your-seller-id";
+slider.baseProduct = baseProduct;
+
+// Subscribe to events from slider
+slider.addEventListener('recommendation-click', handleProductClick);
+slider.addEventListener('add-to-cart', handleAddToCartClick);
+
+// Insert the slider in your page
+document.getElementById('place-for-slider').appendChild(slider);
 ```
-
-Note: the syntax might be different depending on the framework used, the above 
-one is written in [lit](https://lit.dev/) template syntax.
-
