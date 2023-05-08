@@ -4,11 +4,9 @@ A slider component with products recommendations.
 Just put it in your web shop and connect.
 
 - [Plain web-component variant](packages/slider/README.md).
-  
-  For plain js frontends (vanilla), Vue.js, Svelte, Lit and others
+    For plain js frontends (vanilla), Vue.js, Svelte, Lit and others
 - [React wrapper](packages/react-slider/README.md).
-  
-  For React projects
+    For React projects
 
 Example look:
 ![example.png](example.png)
@@ -22,11 +20,11 @@ Here is the list of input props for the component:
 | language        | Language of output: `de`, `en`, etc.                                           | String  | No       |
 | country         | Operational country: `de`, `at`, etc.                                          | String  | No       |
 | seller          | The seller id                                                                  | String  | Yes      |
-| session         | Session id. Will be auto-generated when not provided                           | String  | No       |
+| session         | Session id. Will be auto-generated if not specified                            | String  | No       |
 | baseProduct     | A product for which to get recommendations                                     | Object  | Yes      |
-| customer        | Information about customer who is buying the product                           | Object  | No       |
+| customer        | Information about a customer who is buying the product                         | Object  | No       |
 | limit           | Number of recommendations to get                                               | Number  | No       |
-| disableTracking | disable tracking user of actions with the slider. By default will be collected | Boolean | No       |
+| disableTracking | Disable tracking user of actions with the slider. By default will be collected | Boolean | No       |
 
 Base product object structure:
 ```
@@ -51,7 +49,7 @@ You can also pass any other arbitrary property within customer
 
 ## Customize styles
 
-The components is implemented using shadow DOM with all styles isolated,
+The components are implemented using shadow DOM with all styles isolated,
 so there are 3 possibilities for styles customization:
 1. Customize host element (`tfup-recommendations-slider`) by directly applying
    styles to it.
@@ -63,10 +61,10 @@ so there are 3 possibilities for styles customization:
      --color-shimmer-light: rgba(212, 212, 212, 0.1);
      --arrow-size: 3rem;
     ```
-   Note: shimmer is a skeleton loading that is shown during request
-   execution
-3. Use shadow `::part` pseudo-element to customize internal elements. Here is
-   the list of available parts: `recommendation`, `button`, `price`, `arrow`
+   Note: shimmer refers to the shimmer loading effect shown while loading 
+   recommendations
+3. Use shadow `::part` pseudo-element to customize internal elements. The 
+   available parts are: `recommendation`, `button`, `price` and `arrow`
 
 Example:
 ```

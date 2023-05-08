@@ -38,5 +38,3 @@ const baseProduct: BaseProduct = {
   onAddToCart={handleAddToCartClick}
 />
 ```
-
-## Customize styles
