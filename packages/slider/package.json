@@ -50,6 +50,7 @@
     "@storybook/blocks": "^7.0.12",
     "@storybook/builder-vite": "^7.0.12",
     "@storybook/theming": "^7.0.12",
+    "@storybook/web-components": "^7.0.12",
     "@storybook/web-components-vite": "^7.0.12",
     "@types/chai": "^4.3.4",
     "@types/chai-dom": "^1.11.0",

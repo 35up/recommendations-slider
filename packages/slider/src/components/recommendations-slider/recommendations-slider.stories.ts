@@ -1,7 +1,7 @@
 import { html, render } from 'lit';
 import { styleMap } from 'lit/directives/style-map';
 import { ifDefined } from 'lit/directives/if-defined';
-import { Meta, Story, StoryObj } from '@storybook/web-components';
+import { Meta, StoryFn, StoryObj } from '@storybook/web-components';
 import { BaseProduct, Customer } from '@35up/js-sdk-browser';
 import './recommendations-slider';
 import mdx from './recommendations-slider.mdx';
@@ -96,7 +96,7 @@ export const WithFontSize: StoryObj = {
   },
 };
 
-export const FullyCustomized: Story<TProps> = ({ baseProduct }) => {
+export const FullyCustomized: StoryFn<TProps> = ({ baseProduct }) => {
   const wrapper = document.createElement('div');
   wrapper.attachShadow({mode: 'open'});
   render(
