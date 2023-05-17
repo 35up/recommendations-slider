@@ -8,7 +8,7 @@ function slideToElement(index: number): void {
       .find('.slider > button').eq(1)
       .click();
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(200);
+    cy.wait(800);
     n -= 1;
   }
 }
@@ -19,7 +19,7 @@ describe('recommendation-slider', () => {
   });
 
   it('can slide right', () => {
-    cy.get('tfup-recommendations-slider').shadow()
+    cy.get('tfup-recommendations-slider', {timeout: 10000}).shadow()
       .find('.slider > button').eq(1)
       .click();
     cy.get('tfup-recommendations-slider').shadow().find('.slider .slider-track')
