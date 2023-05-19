@@ -10,6 +10,7 @@ import type {
 } from '@35up/recommendations-slider';
 import { reactify } from '../reactify';
 
+
 export type RecommendationsSliderProps = {
   seller: string,
   baseProduct: BaseProduct,
@@ -18,6 +19,7 @@ export type RecommendationsSliderProps = {
   session?: string,
   customer?: Customer,
   limit?: number,
+  apiUrl?: string,
   disableTracking?: boolean,
   className?: string,
   ref?: Ref<Slider>,
@@ -30,5 +32,5 @@ export type RecommendationsSliderProps = {
 }
 
 export const RecommendationsSlider = reactify<RecommendationsSliderProps>(
-  'tfup-recommendations-slider',
+  'tfup-recommendations-slider', {attributeMap: {apiUrl: 'api-url'}}
 );

@@ -60,6 +60,21 @@ describe('reactify', () => {
     expect(span).not.toHaveProperty('obj');
   });
 
+  it('uses the attributeMap to override the attribute names', () => {
+    type TSpanProps = {myParam: string};
+    const Component = reactify<TSpanProps>(
+      'span',
+      {attributeMap: {myParam: 'my-param'}},
+    );
+
+    const { container } = render(<Component myParam="my-value" />);
+
+    const span = container.querySelector('span');
+
+    expect(span.getAttribute('my-param')).to.equal('my-value');
+    expect(span.getAttribute('myParam')).be.null;
+  });
+
   it('sets the prop as a property even if it is a string when present in the propMap', () => {
     type TSpanProps = {prop: string};
     const Component = reactify<TSpanProps>('span', {propMap: {prop: 'prop'}});
