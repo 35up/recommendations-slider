@@ -9,10 +9,11 @@ module.exports = {
     '../src/**/*.stories.@(js|jsx|ts|tsx)'
   ],
   addons: [
+    '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-essentials'
   ],
-  framework: '@storybook/web-components',
+  framework: '@storybook/web-components-vite',
   core: {
     builder: '@storybook/builder-vite',
   },
@@ -25,6 +26,7 @@ module.exports = {
     config.optimizeDeps.exclude = [...(config.optimizeDeps?.exclude ?? []), 'lit', 'lit-html']
 
     return mergeConfig(config, {
+      base: '/recos-slider/',
       resolve: {
         alias: [
           { find: /^lit\/([\w-/]+)$/, replacement: 'lit/$1.js' },
