@@ -6,13 +6,14 @@
   ></script>
   <link
     rel="stylesheet"
-    href="/node_modules/playgroundplayground-theme-monokai.css"
+    href="/node_modules/playground-elements/themes/monokai.css"
   />
   <title>35up Recommendation slider demo</title>
   <style>
     body {
       --playground-highlight-color: var(--playground-code-attribute-color);
       --playground-tab-bar-background: var(--playground-code-gutter-background);
+      --playground-tab-bar-foreground-color: var(--playground-code-default-color);
       --playground-preview-toolbar-background: var(--playground-code-gutter-background);
       --playground-preview-width: 65%;
 
@@ -47,7 +48,6 @@
     playground-file-editor {
       flex: 1 1 auto;
     }
-
   </style>
 </head>
 
@@ -75,7 +75,8 @@
   const ide = document.querySelector('#project');
   const { ['index.html']: index, ...otherFiles} = files;
 
-  ide.config = {files: {
+  ide.config = {
+    files: {
       'index.html': index,
       ...otherFiles,
     }};

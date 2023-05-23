@@ -1,13 +1,13 @@
 {
   "name": "fakedoor-demo",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Fake Door demo for Recommendations Slider",
   "scripts": {
     "start": "vite",
     "build": "vite build"
   },
   "dependencies": {
-    "@35up/recommendations-slider": "^0.0.1",
+    "@35up/recommendations-slider": "^0.1.0",
     "@web/rollup-plugin-import-meta-assets": "^1.0.7",
     "bulma": "^0.9.4",
     "playground-elements": "^0.17.0",
