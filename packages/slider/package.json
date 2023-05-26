@@ -1,6 +1,6 @@
 {
   "name": "@35up/recommendations-slider",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Component library to include 35up Recommendations in your store",
   "scripts": {
     "start": "npm run storybook",
@@ -17,7 +17,7 @@
     "cy:run": "cypress run --e2e",
     "cy:open": "cypress open --browser chrome --e2e",
     "ci": "npm run clean && run-p lint build test",
-    "rebuild-storybook": "rm -rf storybook-static && build-storybook"
+    "rebuild-storybook": "rm -rf storybook-static && npm run build-storybook"
   },
   "repository": {
     "type": "git",
