@@ -17,6 +17,7 @@ type TProps = {
   limit?: number;
   height?: string;
   fontSize?: string;
+  apiUrl?: string;
   click: EventListener,
   recommendationClick: EventListener,
   addToCart: EventListener
@@ -38,6 +39,7 @@ export default {
     country: {control: 'text'},
     seller: {control: 'text'},
     session: {control: 'text'},
+    apiUrl: {control: 'text'},
     limit: {control: 'number'},
     height: {control: 'text', name: 'Recommendations Height'},
     fontSize: {control: 'text', name: 'Font Size'},
@@ -59,6 +61,7 @@ export default {
     seller,
     session,
     limit,
+    apiUrl,
     height,
     fontSize,
     click,
@@ -73,6 +76,7 @@ export default {
       country=${ifDefined(country)}
       session=${ifDefined(session)}
       limit=${ifDefined(limit)}
+      apiUrl=${ifDefined(apiUrl)}
       @click=${click}
       @recommendation-click=${recommendationClick}
       @add-to-cart=${addToCart}

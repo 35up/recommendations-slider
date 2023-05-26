@@ -27,6 +27,7 @@ export class RecommendationsSlider extends LitElement {
     customer: {type: Object},
     limit: {type: Number},
     disableTracking: {type: Boolean, attribute: 'disable-tracking'},
+    apiUrl: {type: String, attribute: 'api-url'},
     recommendations: {state: true},
     error: {state: true},
   };
@@ -113,6 +114,7 @@ export class RecommendationsSlider extends LitElement {
   seller: string;
   session?: string;
   limit?: number;
+  apiUrl?: string;
   disableTracking = false;
   recommendations: [TStatus, ProductRecommendation[]] = ['pending', []];
 
@@ -130,6 +132,7 @@ export class RecommendationsSlider extends LitElement {
       seller: this.seller,
       session: this.session,
       lang: this.language,
+      apiUrl: this.apiUrl,
     });
   }
 

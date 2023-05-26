@@ -16,6 +16,7 @@ type TPropsWithClassName = Record<string, string> & {className?: string};
 type TPropsWithClass = Record<string, string> & {class?: string};
 type TReactifyOptions = {
   eventMap?: Record<string, string>;
+  attributeMap?: Record<string, string>;
   propMap?: Record<string, string>;
 };
 
@@ -47,7 +48,7 @@ export function reactify<
   TComponent extends HTMLElement = HTMLElement
 >(
   Tag: string,
-  { eventMap = {}, propMap = {} }: TReactifyOptions = {},
+  { eventMap = {}, attributeMap = {}, propMap = {} }: TReactifyOptions = {},
 ): FC<Omit<TProps, 'ref'> & { ref?: RefObject<TComponent> }> {
   // @ts-ignore
   return forwardRef<TComponent, TProps>(
@@ -85,7 +86,14 @@ export function reactify<
               return [attrs, [...props, [key, value]], events];
             }
 
-            return [{...attrs, [key]: value}, props, events];
+            return [
+              {
+                ...attrs,
+                [attributeMap[key] ?? key]: value,
+              },
+              props,
+              events,
+            ];
           }, [{}, [], []]),
         [originalProps],
       );

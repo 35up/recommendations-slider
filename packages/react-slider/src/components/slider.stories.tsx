@@ -14,6 +14,7 @@ const meta: Meta<typeof RecommendationsSlider> = {
     seller: {control: 'text'},
     session: {control: 'text'},
     limit: {control: 'number'},
+    apiUrl: {control: 'text'},
     onRecommendationClick: {action: 'recommendation-click'},
     onAddToCart: {action: 'add-to-cart'},
   },

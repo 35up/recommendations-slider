@@ -29,12 +29,14 @@ describe('RecommendationSlider', () => {
         seller="35up-test"
         language="de"
         base-product='{"title": "apple iphone 12"}'
+        api-url="http://localhost:9000/api"
       />
     `);
 
     expect(initialise).to.have.been.calledOnceWith(sinon.match({
       seller: '35up-test',
       lang: 'de',
+      apiUrl: 'http://localhost:9000/api',
     }));
 
     expect(sdkInstance.getProductRecommendations).to.have.been.calledWith(
