@@ -4,7 +4,8 @@
   "description": "Fake Door demo for Recommendations Slider",
   "scripts": {
     "start": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "rebuild": "rm -rf dist && vite build"
   },
   "dependencies": {
     "@35up/recommendations-slider": "^0.1.1",
