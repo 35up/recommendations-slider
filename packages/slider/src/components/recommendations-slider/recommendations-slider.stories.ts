@@ -4,7 +4,6 @@ import { ifDefined } from 'lit/directives/if-defined';
 import { Meta, StoryFn, StoryObj } from '@storybook/web-components';
 import { BaseProduct, Customer } from '@35up/js-sdk-browser';
 import './recommendations-slider';
-import mdx from './recommendations-slider.mdx';
 
 
 type TProps = {
@@ -25,13 +24,7 @@ type TProps = {
 
 export default {
   title: 'Recommendations Slider',
-  parameters: {
-    docs: {
-      page: mdx,
-    },
-    viewMode: 'docs',
-    previewTabs: { 'storybook/docs/panel': { index: -1 } },
-  },
+  tags: ['autodocs'],
   argTypes: {
     baseProduct: {control: 'object'},
     customer: {control: 'object'},
