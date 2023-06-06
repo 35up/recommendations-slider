@@ -26,7 +26,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
       - name: Install
         run: npm i
       - name: Build
@@ -37,25 +37,3 @@ jobs:
         run: npm run test
       - name: Test-components
         run: npm run test-components
-
-  slack:
-    needs: ci-slider
-    if: failure()
-    runs-on: ubuntu-latest
-    timeout-minutes: 3
-    env:
-      SLACK_BOT_TOKEN: ${{ secrets.ACTIONS_SLACK_BOT_ID }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          repository: 35up/github-action-slack-notify
-          ref: v4
-          token: ${{ secrets.GH_ACCESS_TOKEN }}
-          path: .github/actions/slack-notify
-      - name: Trigger Slack Notification
-        uses: ./.github/actions/slack-notify
-        with:
-          # gh-reports channel
-          channel-id: C03TQL71JHY
-          job-status: ${{ needs.ci-slider.result }}
