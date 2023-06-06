@@ -2,6 +2,7 @@
   "name": "fakedoor-demo",
   "version": "0.1.1",
   "description": "Fake Door demo for Recommendations Slider",
+  "license": "MIT",
   "scripts": {
     "start": "vite",
     "build": "vite build",

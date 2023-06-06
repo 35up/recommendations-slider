@@ -9,6 +9,7 @@
     "build": "vite build",
     "test": "vitest"
   },
+  "license": "MIT",
   "dependencies": {
     "@35up/recommendations-slider": "^0.1.1"
   },
