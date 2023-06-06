@@ -12,7 +12,6 @@ module.exports = {
     '@storybook/addon-actions',
     '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-docs',
   ],
   framework: '@storybook/web-components-vite',
   core: {
