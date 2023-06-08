@@ -50,6 +50,7 @@ export function reactify<
   Tag: string,
   { eventMap = {}, attributeMap = {}, propMap = {} }: TReactifyOptions = {},
 ): FC<Omit<TProps, 'ref'> & { ref?: RefObject<TComponent> }> {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   return forwardRef<TComponent, TProps>(
     ({ children, ...originalProps }, ref) => {
@@ -118,7 +119,7 @@ export function reactify<
       }, [validRef, elementProperties, elementEvents]);
 
       return (
-        <Tag  {...normalizeClassName(elementAttributes)} ref={validRef}>
+        <Tag {...normalizeClassName(elementAttributes)} ref={validRef}>
           {children}
         </Tag>
       );

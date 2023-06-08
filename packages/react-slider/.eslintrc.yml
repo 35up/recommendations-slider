@@ -1,0 +1,10 @@
+extends:
+  - "@35up/35up-react"
+parserOptions:
+  parser: '@typescript-eslint/parser'
+  project:
+    - tsconfig.json
+    - tsconfig.test.json
+env:
+  browser: true
+  es6: true
