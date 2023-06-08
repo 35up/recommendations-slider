@@ -1,6 +1,6 @@
 {
   "name": "@35up/react-recommendations-slider",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "React component library to include 35up Recommendations in your store",
   "module": "build/index.esm.js",
   "types": "src",
@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@35up/recommendations-slider": "^0.1.1"
+    "@35up/recommendations-slider": "^1.0.0"
   },
   "peerDependencies": {
     "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
