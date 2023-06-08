@@ -8,8 +8,10 @@ Just put it in your web shop and connect.
 - [React wrapper](packages/react-slider/README.md).
     For React projects
 
-Example look:
-![example.png](example.png)
+Demos:
+- [Slider Demo](https://examples.35up.io/recos-slider)
+- [Example of usage in Fake Door Testing](https://examples.35up.io/fake-door-test)
+
 
 ## Input props
 Here is the list of input props for the component:

@@ -1,6 +1,6 @@
 {
   "name": "recos-slider--monorepo",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "bump-version": "lerna version --no-git-tag-version --no-push",
     "bootstrap": "lerna bootstrap --no-ci",
