@@ -9,7 +9,7 @@ Just put it in your web shop and connect.
     For React projects
 
 Demos:
-- [Slider Demo](https://examples.35up.io/recos-slider)
+- [Slider Demo](https://examples.35up.io/recos-slider/?path=/docs/recommendations-slider--docs)
 - [Example of usage in Fake Door Testing](https://examples.35up.io/fake-door-test)
 
 

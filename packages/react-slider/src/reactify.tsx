@@ -5,6 +5,7 @@ import {
   forwardRef,
   useLayoutEffect,
   useMemo,
+  PropsWithoutRef,
 } from 'react';
 
 
@@ -44,13 +45,12 @@ function useEnsureRef<T>(ref: ForwardedRef<T> | null): RefObject<T> {
 }
 
 export function reactify<
-  TProps extends TWebComponentsProps = TWebComponentsProps,
+  TProps extends TWebComponentsProps,
   TComponent extends HTMLElement = HTMLElement
 >(
   Tag: string,
   { eventMap = {}, attributeMap = {}, propMap = {} }: TReactifyOptions = {},
-): FC<Omit<TProps, 'ref'> & { ref?: RefObject<TComponent> }> {
-  // @ts-ignore
+): FC<PropsWithoutRef<TProps>> {
   return forwardRef<TComponent, TProps>(
     ({ children, ...originalProps }, ref) => {
       const validRef: RefObject<TComponent> = useEnsureRef(ref);
@@ -118,7 +118,7 @@ export function reactify<
       }, [validRef, elementProperties, elementEvents]);
 
       return (
-        <Tag  {...normalizeClassName(elementAttributes)} ref={validRef}>
+        <Tag {...normalizeClassName(elementAttributes)} ref={validRef}>
           {children}
         </Tag>
       );

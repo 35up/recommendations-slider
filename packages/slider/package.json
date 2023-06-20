@@ -6,7 +6,7 @@
     "start": "npm run storybook",
     "build": "rollup --config",
     "clean": "rm -rf ./build",
-    "lint": "eslint --ext .js,.ts .",
+    "lint": "eslint --ext .tsx,.ts .",
     "test": "jest --passWithNoTests ./src",
     "test:watch": "npm test -- --watch",
     "test:coverage": "npm test -- --coverage",
