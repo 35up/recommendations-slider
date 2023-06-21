@@ -272,7 +272,7 @@ export class RecommendationsSlider extends LitElement {
         <button
           class="arrow"
           @click=${this.#scrollToPrevious}
-          aria-hidden="true"
+          aria-label="arrow-left"
           part="arrow"
         >
           ${arrow}
@@ -289,7 +289,7 @@ export class RecommendationsSlider extends LitElement {
         <button
           class="arrow right"
           @click=${this.#scrollToNext}
-          aria-hidden="true"
+          aria-label="arrow-right"
           part="arrow"
         >
           ${arrow}
