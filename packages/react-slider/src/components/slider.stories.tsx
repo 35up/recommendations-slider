@@ -1,4 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { waitFor } from '@storybook/testing-library';
+import { expect } from '@storybook/jest';
 import { Style } from 'react-style-tag';
 import { RecommendationsSlider } from './slider';
 
@@ -29,7 +31,60 @@ const meta: Meta<typeof RecommendationsSlider> = {
 export default meta;
 type Story = StoryObj<typeof RecommendationsSlider>;
 
-export const Default: Story = {};
+function isRecoVisible(reco: HTMLElement): boolean {
+  const track = reco.parentElement;
+  const recoRect = reco.getBoundingClientRect();
+  const trackRect = track.getBoundingClientRect();
+
+  return recoRect.right > trackRect.left && recoRect.left < trackRect.right;
+}
+
+export const Default: Story = {
+  play: async ({ canvasElement, step }) => {
+    const sliderEl = canvasElement
+      .querySelector('tfup-recommendations-slider').shadowRoot;
+
+    await waitFor(function recosLoaded() {
+      expect(sliderEl.querySelector('tfup-recommendation')).toBeTruthy();
+    }, {timeout: 2000});
+
+    const [ arrowLeft, arrowRight ] = [
+      sliderEl.querySelectorAll<HTMLButtonElement>('.arrow')[0],
+      sliderEl.querySelectorAll<HTMLButtonElement>('.arrow')[1],
+    ];
+    const [ firstReco, secondReco, thirdReco ] = Array
+      .from(sliderEl.querySelectorAll('tfup-recommendation'));
+
+    await step('Slide right once', async () => {
+      arrowRight.click();
+
+      await waitFor(function firstRecoOut() {
+        expect(isRecoVisible(firstReco)).toBeFalsy();
+        expect(isRecoVisible(secondReco)).toBeTruthy();
+      }, {timeout: 2000});
+    });
+
+    await step('Slide right twice', async () => {
+      arrowRight.click();
+
+      await waitFor(function firstRecoOut() {
+        expect(isRecoVisible(firstReco)).toBeFalsy();
+        expect(isRecoVisible(secondReco)).toBeFalsy();
+        expect(isRecoVisible(thirdReco)).toBeTruthy();
+      }, {timeout: 2000});
+    });
+
+    await step('Slide left', async () => {
+      arrowLeft.click();
+
+      await waitFor(function firstRecoIn() {
+        expect(isRecoVisible(firstReco)).toBeFalsy();
+        expect(isRecoVisible(secondReco)).toBeTruthy();
+        expect(isRecoVisible(thirdReco)).toBeTruthy();
+      });
+    });
+  },
+};
 
 export const CustomStyles: Story = {
   render(props) {
