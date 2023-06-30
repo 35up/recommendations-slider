@@ -48,9 +48,9 @@ export const Default: Story = {
       expect(sliderEl.querySelector('tfup-recommendation')).toBeTruthy();
     }, {timeout: 2000});
 
-    const [ arrowRight, arrowLeft ] = [
-      sliderEl.querySelector<HTMLButtonElement>('[aria-label="arrow-right"]'),
-      sliderEl.querySelector<HTMLButtonElement>('[aria-label="arrow-left"]'),
+    const [ arrowLeft, arrowRight ] = [
+      sliderEl.querySelectorAll<HTMLButtonElement>('.arrow')[0],
+      sliderEl.querySelectorAll<HTMLButtonElement>('.arrow')[1],
     ];
     const [ firstReco, secondReco, thirdReco ] = Array
       .from(sliderEl.querySelectorAll('tfup-recommendation'));
