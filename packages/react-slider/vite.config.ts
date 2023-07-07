@@ -13,6 +13,12 @@ export default defineConfig({
       formats: ['esm'],
       fileName: basename(pkg.module, '.esm.js'),
     },
+    rollupOptions: {
+      external: [
+        ...Object.keys(pkg.dependencies),
+        ...Object.keys(pkg.peerDependencies),
+      ].map(dep => new RegExp(`^${dep}`)),
+    },
     outDir: dirname(pkg.module),
     sourcemap: true,
   },
