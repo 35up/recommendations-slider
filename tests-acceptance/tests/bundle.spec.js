@@ -1,5 +1,5 @@
 describe('@35up/recommendations-slider', () => {
-  it('is properly bundled without dangling dependencies', () => {
+  it('is properly bundled', () => {
     cy.visit('http://localhost:3000');
 
     // check that the component was initialized
@@ -10,7 +10,7 @@ describe('@35up/recommendations-slider', () => {
 });
 
 describe('@35up/react-recommendations-slider', () => {
-  it('is properly bundled without dangling dependencies', () => {
+  it('is properly bundled', () => {
     cy.visit('http://localhost:3000?react');
 
     // check that the component was initialized
