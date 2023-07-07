@@ -17,3 +17,5 @@ package-lock.json
 **/cypress/videos/
 
 **/storybook-static
+/tests-acceptance/videos/
+/tests-acceptance/screenshots/

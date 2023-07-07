@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Test</title>
+</head>
+<body>
+
+</body>
+<script type="module">
+  (async () => {
+    if (window.location.search === '?react') {
+      await import('./react');
+    } else {
+      await import('./vanilla.mjs');
+    }
+  })();
+</script>
+</html>

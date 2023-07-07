@@ -16,6 +16,9 @@ export default defineConfig({
     outDir: dirname(pkg.module),
     sourcemap: true,
   },
+  resolve: {
+    mainFields: ['module', 'browser', 'main'],
+  },
   test: {
     environment: 'jsdom',
   },
