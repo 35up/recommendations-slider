@@ -7,7 +7,7 @@ on:
       - tests-acceptance/**
       - packages/slider/**
       - packages/react-slider/**
-      - ./.github/workflows/acceptance-tests.yml
+      - ./.github/workflows/ci-acceptance-tests.yml
 
   pull_request:
     branches: [ master ]
