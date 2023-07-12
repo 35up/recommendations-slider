@@ -1,0 +1,41 @@
+name: ci-acceptance-tests
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - tests-acceptance/**
+      - packages/slider/**
+      - packages/react-slider/**
+      - ./.github/workflows/ci-acceptance-tests.yml
+
+  pull_request:
+    branches: [ master ]
+    paths:
+      - tests-acceptance/**
+      - packages/slider/**
+      - packages/react-slider/**
+      - ./.github/workflows/acceptance-tests.yml
+
+jobs:
+  ci-acceptance-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: "./tests-acceptance"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Bootstrap
+        run: cd .. && npm i && npm run bootstrap
+      - name: Build slider
+        run: cd ../packages/slider && npm run build
+      - name: Build react slider
+        run: cd ../packages/react-slider && npm run build
+      - name: Test
+        run: npm run test-acceptance

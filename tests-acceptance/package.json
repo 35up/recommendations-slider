@@ -1,0 +1,21 @@
+{
+  "name": "test-acceptance",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test-acceptance": "server-test 'npx vite --port 3000' localhost:3000 cy:run",
+    "cy:run": "cypress run --e2e",
+    "cy:open": "cypress open --browser chrome --e2e"
+  },
+  "dependencies": {
+    "@35up/js-sdk-browser": "^1.0.0",
+    "@35up/react-recommendations-slider": "^1.0.0",
+    "@35up/recommendations-slider": "^1.0.0",
+    "cypress": "^12.16.0",
+    "lit": "^2.7.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "start-server-and-test": "^2.0.0",
+    "vite": "^4.4.0"
+  }
+}
