@@ -10,7 +10,6 @@ function createAddedToCartModal(
   );
   const dom = template.content.cloneNode(true) as DocumentFragment;
   const $ = dom.querySelector.bind(dom);
-  $('.product-name').textContent = product.name;
   $('.image img').setAttribute('src', product.images.thumbnail);
 
   const remove = createRemoveContentFunction(dom);

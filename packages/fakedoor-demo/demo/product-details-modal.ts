@@ -30,7 +30,6 @@ function createProductDetailsModal(
   );
   const dom = template.content.cloneNode(true) as DocumentFragment;
   const $ = dom.querySelector.bind(dom);
-  $('.product-name').textContent = product.name;
   $('.image img')
     .setAttribute('src', product.images.thumbnail);
   $('.delivery-from').textContent = String(product.delivery.timeMin);
