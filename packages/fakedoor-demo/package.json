@@ -1,6 +1,6 @@
 {
   "name": "fakedoor-demo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fake Door demo for Recommendations Slider",
   "license": "MIT",
   "scripts": {
@@ -9,7 +9,7 @@
     "rebuild": "rm -rf dist && vite build"
   },
   "dependencies": {
-    "@35up/recommendations-slider": "^1.0.0",
+    "@35up/recommendations-slider": "^1.0.1",
     "@web/rollup-plugin-import-meta-assets": "^1.0.7",
     "bulma": "^0.9.4",
     "playground-elements": "^0.17.0",
