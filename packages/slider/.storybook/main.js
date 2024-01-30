@@ -38,6 +38,10 @@ module.exports = {
             {
               src: path.resolve(__dirname, './logo-colorful.svg'),
               dest: path.resolve(__dirname, '../storybook-static'),
+            },
+            {
+              src: path.resolve(__dirname, './favicon.svg'),
+              dest: path.resolve(__dirname, '../storybook-static'),
             }
           ]
         })
