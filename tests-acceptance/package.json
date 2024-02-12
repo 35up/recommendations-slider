@@ -1,6 +1,6 @@
 {
   "name": "test-acceptance",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "scripts": {
     "test-acceptance": "server-test 'npx vite --port 3000' localhost:3000 cy:run",
@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@35up/js-sdk-browser": "^1.0.0",
-    "@35up/react-recommendations-slider": "^1.0.1",
-    "@35up/recommendations-slider": "^1.0.1",
+    "@35up/react-recommendations-slider": "^1.0.2",
+    "@35up/recommendations-slider": "^1.0.2",
     "cypress": "^12.16.0",
     "lit": "^2.7.6",
     "react": "^18.2.0",
